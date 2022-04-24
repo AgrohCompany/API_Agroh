@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="js/funcoes.js"></script>
+
+    <link rel="shortcut icon" href="Imagens/logo-agroh.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <link rel="stylesheet" href="css/login-cadastro.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <title>Agro Company | Login</title>
+
+</head>
+
+<body>
+    <div class="green">
+        <div class="text2">
+            <img src="Imagens/logo-agroh.png" alt="">
+            <h1>Bem vindo de volta!</h1>
+            <span>Bom ver você de novo por aqui :)</span>
+            <span>Entre com seu email e senha, para acessar sua conta!</span>
+            <span>Caso não tenha, não se preocupe. Registre-se agora mesmo.</span>
+
+            <a href="cadastro.html"><input class="btn-login" type="button" value="Cadastre-se" id="cadastro"></a>
+            <a href="index.html"><input class="btn-home" type="button" value="VOLTAR AO INICIO" id="cadastro"></a>
+
+        </div>
+    </div>
+
+    <div class="container-login">
+
+        <div class="fundo">
+            <h1>Faça seu Login <i class="uil uil-signin"></i></h1>
+
+            <!-- e-mail -->
+            <div class="grey">
+                <div class="input-all">
+                    <i class="uil uil-at icon"></i>
+                    <input class="ipt" type="email" name="e-mail" id="iptEmail" placeholder="E-mail" required>
+
+
+                </div>
+                <span id="spanErroEmail" class="spanErro" style="display: none;"></span>
+                <!-- senha -->
+                <div class="input-all">
+                    <i class="uil uil-padlock icon"></i>
+                    <input class="ipt" type="password" name="senha" id="iptSenha" placeholder="Senha" required>
+                    <i id="icon_mostrar" class="uil uil-eye-slash icon_senha" onclick="mostrar()"></i>
+                    <i id="icon_esconder" class="uil uil-eye icon_senha" style="display: none;"
+                        onclick="esconder()"></i>
+                </div>
+                <span id="spanErroSenha" class="spanErro" style="display: none;"></span>
+                <div class="checkbox">
+
+                    <input class="check" type="checkbox" name="" id="remenber">
+                    <label for="remenber" class="txt">Lembrar</label>
+
+                </div>
+
+                <div class="alerta_erro">
+                    <div class="card_erro" id="cardErro">
+                        <span id="mensagem_erro"></span>
+                    </div>
+                </div>
+
+                <div id="div_aguardar" class="loading-div">
+                    <img src="./assets/aguarde-pink3.gif" id="loading-gif">
+                </div>
+
+                <div id="div_erros_login">
+
+                </div>
+
+                <div>
+                    <button class="btn-login" id="login" onclick="entrar(), lsRememberMe()">Login</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
+<script>
+
+
+    function entrar() {
+        aguardar();
+
+        var emailVar = iptEmail.value;
+        var senhaVar = iptSenha.value;
+
+        // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Preencha todos os campos para prosseguir!";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Ops, e-mail inválido! Verifique e tente novamente.";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/cards.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+</script>
