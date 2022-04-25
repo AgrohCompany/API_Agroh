@@ -14,14 +14,15 @@ body {
     top: 0;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: #0C120C;
     height: 15vh;
     width: 100%;
 }
 
 .container img {
-    width: 5vw;
+    width: 4vw;
+    margin-left: 110px;
 }
 
 .container ul {
@@ -33,7 +34,7 @@ body {
 }
 
 .container a {
-    font-size: 1.1em;
+    font-size: 1em;
     text-decoration: none;
     color: #fff;
 }
@@ -49,7 +50,7 @@ body {
     font-size: 1em;
     background-color: #fff;
     border-radius: 7px;
-    border: 2px solid #fff;
+    border: 5px solid #fff;
     cursor: pointer;
 }
 .now {
@@ -68,9 +69,11 @@ body {
 }
 
 .opacidade {
+    display: flex;
     background-color: #0C120C;
     height: 90vh;
     opacity: 85%;
+    justify-content: flex-end;
 }
 
 .quadrado {
@@ -84,28 +87,29 @@ body {
 
 .opacidade p {
     display: flex;
-    align-items: center;
-    height: 7vh;
+    height: 15vh;
     font-size: 5.0em;
     font-weight: bold;
     color: #ffffff;
-    padding-bottom: 40px;
-    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .opacidade span {
     display: flex;
-    align-items: center;
     height: 7vh;
-    font-size: 4.0em;
+    font-size: 3.0em;
     font-weight: bold;
     color: #ffffff;
+    align-items: center;
+    justify-content: center;
 }
 
 .texto {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    text-align: justify;
+    width: 55%;
 }
 
 /* PRODUTO SOJE & CANA */
