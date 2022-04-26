@@ -1,0 +1,277 @@
+/* 
+As border que aparecem nas maiorias dos estilos,
+usei para auxiliar na hora de saber onde estão as famosas divs.
+
+Para ocultar é só dar um (Ctrl + : ), sumir a mesma coisa.
+
+Esse site é mara: https://www.alura.com.br/artigos/css-guia-do-flexbox
+
+Link do meu miro: https://miro.com/app/board/o9J_l-fpPjk=/
+
+Arrasa!
+
+
+box-shadow ok, border raius,
+*/
+
+body { 
+    margin: 0;
+    padding: 0;
+    display: flex;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.tamanhoGraficosLineBar-class {
+    height: 30vh;
+    width:  30vw;
+    display: flex;
+    background-color: #fff;
+    /* border: 2px solid blue; */
+}
+
+.tamanhoGraficosLine-class2 {
+    height: 30vh;
+    width: 30vw;
+    background-color: #fff;
+    /* border: 2px solid red; */
+}
+
+.tamanhoGraficosBar-class2 {
+    height: 30vh;
+    width:  30vw;
+    background-color: #fff;
+    /* border: 2px solid red; */
+}
+
+.tamanhoGraficosPolares-class {
+    height: 30vh;
+    width: 30vw;
+    display: flex;
+    /* border: 2px solid blue; */
+}
+
+.global-class {
+    display: flex;
+    width: 100vw;
+    background-color: #F8F8F8;
+}
+
+.header-left-class {
+    height: 100vh;
+    width: 20vw;
+    display: flex;
+    background-color: #9ee37d;
+    flex-direction: column;
+    align-items: center;
+    /* border: 2px solid red; */
+}
+
+.caixa-user-class {
+    height: 10vh;
+    width: 65%;
+    display: flex;
+    font-size: 60%;
+    margin-top: 8vh;
+    margin-bottom: 20vh;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    color: #ffff    ;
+    background-color: #413620;
+    /* border: 2px solid red; */
+}
+
+.caixa2-postIt-class {
+    height: 22vh;
+    width: 89%;
+    display: flex;
+    margin-bottom: 5vh;
+    box-shadow: #576e4c 2px 3px;
+    /* border-bottom: 2px solid #576e4c; */
+    background-color: #fdf8b6;
+    /* border: 2px solid red; */
+}
+
+.caixa3-calendario-class {
+    height: 35vh;
+    width: 90%;
+    display: flex;
+    margin-bottom: 2vh;
+    align-items: center;
+    justify-content:center;
+    background-color: #fff;
+    /* border: 2px solid red; */
+}
+
+.header-right-class {
+    background-color: #F8F8F8;
+    /* border-top: 2px solid orangered; */
+}
+
+.nave-header-right-class {
+    height: 15vh;
+    width: 80vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 2px solid greenyellow; */
+}
+
+.nave-header-right-class img {
+    height: 82px;
+    display: flex;
+    margin-left: 15px;
+    /* border: 2px solid greenyellow; */
+}
+
+.nave-header-right-class ul img {
+    height: 35px;
+    display: flex;
+    /* border: 2px solid greenyellow; */
+}
+
+.nave-header-right-class ul {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    list-style: none;
+    margin-right: 40px;
+    /* border: 2px solid greenyellow; */
+}
+
+.body-header-right-class {
+    height: 80vh;
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    /* border: 2px solid grey; */
+}
+
+.body2-header-right-class {
+    height: 80vh;
+    width: 75vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #E9F6DC;
+    /* border: 2px solid goldenrod; */
+}
+
+.body3-header-right-class {
+    height: 40vh;
+    width: 75vw;
+    display: flex;
+    justify-content: space-between;
+    /* border: 2px solid rgb(0, 247, 255); */
+}
+
+.body3-1-header-right-class {
+    height: 40vh;
+    width: 75vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    /* border: 2px solid rgb(140, 0, 255); */
+}
+
+.body4-temperatura-umidade-class {
+    height: 40vh;
+    width: 15vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid brown; */
+}
+
+.body5-chartsPolares-class {
+    height: 40vh;
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid black;     */
+}
+
+.body5-1-chartsPolares-class {
+    height: 245px;
+    width: 245px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid black;  */
+}
+
+.tabs-class {
+    height:5vh;
+    width:75vw;
+    margin-left: 2.5vw;
+    overflow: hidden;
+    background-color: #F8F8F8;
+    /* border: 2px solid pink; */
+}
+
+.tabs-class button {
+    color: #56bd56;
+    background-color: #F8F8F8;
+    border-top: 2px solid #E9F6DC;
+    border-left: 2px solid #E9F6DC;
+    border-right: 2px solid #E9F6DC;
+    border-bottom: 1px solid #E9F6DC ;
+    float: left;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    height: 5vh;
+    width: 7vw;
+    /* border: 2px solid pink; */
+}
+
+.tabs-class button:hover {
+    background-color: #E9F6DC;
+    /* border: 2px solid pink; */
+}
+
+/* 
+.tab button.active {
+    background-color: #E9F6DC;
+}  
+*/
+
+
+/* .tamanhoGraficosLine2-class {
+    height: 60vh;
+    width: 60vw;
+    display: flex;
+    background-color: #fff;
+    border: 2px solid red;
+}
+
+.tamanhoGraficosBar2-class {
+    height: 60vh;
+    width: 60vw;
+    display: flex;
+    background-color: #fff;
+    border: 2px solid red;
+} */
+
+.graficoLinhas2-class {
+    height: 65vh;
+    width: 65vw;
+    display: none;
+    margin-bottom: 6vh;
+    /* border: 2px solid black; */
+}
+
+.graficoBarras2-class {
+    height: 65vh;
+    width: 65vw;
+    display: none;
+    margin-bottom: 6vh;
+    /* border: 2px solid black; */
+}

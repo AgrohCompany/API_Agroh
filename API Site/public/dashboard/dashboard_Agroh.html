@@ -1,0 +1,436 @@
+<!DOCTYPE html>  
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- esse link abaixo serve para deixar o icon do logo no navegador -->
+    <link rel="shortcut icon" href="Imagens/logo-agroh.png">
+
+    <title>AgrohCompany | Dashboard</title>
+
+    <!-- 
+    já esse link é dos gráficos de linhas e barras que temos,
+    não sei se os polares vão precisar de link, caso sim, ele entra aqui
+    em uma nova tag <script> para ele
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="dashboard_style.css">
+</head>
+<body>
+  <!-- essa tag div global é toda a nossa naveção da página, ela foi difivida em partes -->
+  <div id="global" class="global-class">
+
+    <!-- uma das partes é a header-left "cabeçalho esquerdo da página" -->
+      <div id="header-left" class="header-left-class">
+
+        <div class="caixa-user-class">
+            <h2>Olá, <span id="username">username</span></h2>
+        </div>
+
+        <div class="caixa2-postIt-class"> 
+            <img src="Imagens/paperclip.png" style="height: 32px; display:flex; justify-content: flex-start">
+        </div>
+        
+        <div id="calendario" class="caixa3-calendario-class">
+            <img src="Imagens/Legenda.png" alt="" style="display: flex; height: 35vh; width: 35vw">
+        </div>
+
+      </div>
+    <!-- fim do header-left, tudo que faz parte dela, no css estão com as bordas em RED para auxiliar na construção -->
+    
+    <!-- 
+      outra parte é header-right toda parte direita da nossa página, temos uma mini nave, onde tem o logo, botões
+      e logo abaixo os gráficos
+    -->
+      <div id="header-right" class="header-right-class">
+
+        <!-- inicio da nave -->
+        <div id="nave-header-right" class="nave-header-right-class">
+            <img src="Imagens/logo-agroh&nome.jpeg" alt="logo-agrohCompany">
+            <ul>
+                <li><a href="#"><img src="Imagens/envelope.png" alt="imagem-envelope"></a></li>
+                <li><a href="#"><img src="Imagens/notificacao.png" alt="imagem-notificação"></a></li>
+                <li><a href="#"><img src="Imagens/avatar.png" alt="imagem-avatar"></a></li>
+                <li><a href="#"><img src="Imagens/sair.png" alt="imagem-saida"></a></li>
+            </ul>
+        </div>
+        <!-- fim da nave, tudo que faz parte dela, no css estão com as bordas em greenyellow -->
+
+        <!-- inicio dos botões -->
+        <div id="tabs" class="tabs-class">
+            <button onclick="buttonDashboard()">Dashboard</button>
+            <button onclick="buttonGrafico1()">Gráfico 1</button>
+            <button onclick="buttonGrafico2()">Gráfico 2</button>
+        </div>
+        <!-- fim dos botões, tudo que faz parte deles, no css estão com as bordas pink -->
+
+        <!-- inicio do body onde ficam os gráficos, no css ele está com as bordas em grey -->
+        <div id="body-header-right" class="body-header-right-class">
+
+          <!--
+            inicio do body dois, ele é responsável em guardar as duas divs onde estão os gráficos,
+            no css sua bordar é goldenrod
+          -->
+          <div id="body2-header-right" class="body2-header-right-class"> 
+
+          <div id="noneEblockDash" style="display: block;"> <!-- none e block em teste-->
+
+            <div id="body3-header-right" class="body3-header-right-class">
+
+                <div class="body5-chartsPolares-class">
+
+                    <div class="body5-1-chartsPolares-class">
+                        <br>
+                        Temperatura dos hectares
+                        <canvas id="canvasChartPolarTempe" class="tamanhoGraficosPolares-class"></canvas>
+                    </div>
+
+                </div>
+
+                <!-- aqui é a parte do centro dos dois gráficos polares, onde tem a temp e umi atual -->
+                <div class="body4-temperatura-umidade-class">
+                    <p>Temperatura atual</p>
+                    <div style="height: 10vh; width: 10vh; background-color: orange; display:flex; justify-content: center; align-items: center;">0 °c</div>
+                    <p>Umidade atual</p>
+                    <div style="height: 10vh; width: 10vh; background-color: darkcyan; display:flex; justify-content: center; align-items: center;">0 %</div>
+                </div>
+
+                <div class="body5-chartsPolares-class">
+
+                    <div class="body5-1-chartsPolares-class">
+                        <br>
+                        Umidade dos hectares
+                        <canvas id="canvasChartPorlarUmi" class="tamanhoGraficosPolares-class"></canvas>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="body3-1-header-right" class="body3-1-header-right-class">
+
+                <div>
+                    <canvas id="canvasChartLine" class="tamanhoGraficosLineBar-class"></canvas>
+                </div>
+
+                <div>
+                    <canvas id="canvasChartBar"  class="tamanhoGraficosLineBar-class"></canvas>
+                </div>
+
+            </div>
+
+          </div>
+          <!-- fim da div none&blockDash-->
+
+          <div id="graficoLinhas2" class="graficoLinhas2-class">
+            <div>
+                <canvas id="canvasChartLine2" class="tamanhoGraficosLine-class2"></canvas>
+            </div> 
+          </div>
+
+          <div id="graficoBarras2" class="graficoBarras2-class">
+            <div>
+                <canvas id="canvasChartBar2"  class="tamanhoGraficosBar-class2"></canvas>
+            </div>
+          </div>
+
+        </div>
+        <!-- fim do body 2 -->
+
+        </div>
+        <!-- fim do body com as bordas em grey -->
+
+      </div>
+      <!-- fim da header-right -->
+
+  </div>
+  <!-- fim da tag div global -->
+</body>
+</html>
+
+<script>
+    // Gráfico de linha
+    const labels = [
+      '06:00',
+      '07:00',
+    //   '08:00',
+      '09:00',
+      '10:00',
+    //   '11:00',
+      '12:00',
+      '13:00',
+    //   '14:00',
+      '15:00',
+      '16:00',
+    //   '17:00',
+    //   '18:00',
+      '19:00',
+      '20:00',
+    //   '21:00',
+    //   '22:00',
+      '23:00',
+      '00:00',
+      '03:00',
+    ];
+  
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: 'Temperatuta (°C)',
+        backgroundColor: 'rgba(218,165,32)',
+        borderColor: 'rgba(218,165,32)',
+        data: [15, 17, 18, 19, 20, 26, 24, 23,20, 20, 19, 18, 16],
+        },
+        {
+        label: 'Umidade (%)',
+        backgroundColor: 'rgba(32,178,170)',
+        borderColor: 'rgba(32,178,170)',
+        data: [40, 52, 47, 52, 40, 47, 50, 44, 48, 50, 49, 50, 52], 
+      }]
+    };
+  
+    const config = {
+      type: 'line',
+      data: data,
+      options: {}
+    };
+    // Fim do gráfico de linha
+
+        // Gráfico de linha 2
+        const labelsA = [
+      '06:00',
+      '07:00',
+    //   '08:00',
+      '09:00',
+      '10:00',
+    //   '11:00',
+      '12:00',
+      '13:00',
+    //   '14:00',
+      '15:00',
+      '16:00',
+    //   '17:00',
+    //   '18:00',
+      '19:00',
+      '20:00',
+    //   '21:00',
+    //   '22:00',
+      '23:00',
+      '00:00',
+      '03:00',
+    ];
+  
+    const dataA = {
+      labels: labelsA,
+      datasets: [{
+        label: 'Temperatuta (°C)',
+        backgroundColor: 'rgba(218,165,32)',
+        borderColor: 'rgba(218,165,32)',
+        data: [15, 17, 18, 19, 20, 26, 24, 23,20, 20, 19, 18, 16],
+        },
+        {
+        label: 'Umidade (%)',
+        backgroundColor: 'rgba(32,178,170)',
+        borderColor: 'rgba(32,178,170)',
+        data: [40, 52, 47, 52, 40, 47, 50, 44, 48, 50, 49, 50, 52], 
+      }]
+    };
+  
+    const configA = {
+      type: 'line',
+      data: dataA,
+      options: {}
+    };
+    // Fim do gráfico de linha 2
+
+    // Gráfico de Barras
+    const labels1 = [
+      '01/April',
+      '02/April',
+      '03/April',
+      '04/April',
+      '05/April',
+      '06/April',
+      '07/April',
+      
+    ];
+
+    const data1 = {
+      labels: labels1,
+      datasets: [{
+        label: 'Temperatuta Média (°C)',
+        backgroundColor: 'rgba(218,165,32)',
+        borderColor: 'rgba(218,165,32)',
+        data: [15, 17, 18, 19, 20, 26, 24 ],
+        },
+        {
+        label: 'Umidade Média (%)',
+        backgroundColor: 'rgba(32,178,170)',
+        borderColor: 'rgba(32,178,170)',
+        data: [8, 8, 5, 5, 3.5, 3.5, 4], 
+      }]
+    };
+
+    const config1 = {
+      type: 'bar',
+      data: data1,
+      options: {}
+    };
+    // Fim do gráfico de Barras
+
+    // Gráfico de Barras 2
+    const labelsB = [
+      '01/April',
+      '02/April',
+      '03/April',
+      '04/April',
+      '05/April',
+      '06/April',
+      '07/April',
+      
+    ];
+
+    const dataB = {
+      labels: labelsB,
+      datasets: [{
+        label: 'Temperatuta Média (°C)',
+        backgroundColor: 'rgba(218,165,32)',
+        borderColor: 'rgba(218,165,32)',
+        data: [15, 17, 18, 19, 20, 26, 24 ],
+        },
+        {
+        label: 'Umidade Média (%)',
+        backgroundColor: 'rgba(32,178,170)',
+        borderColor: 'rgba(32,178,170)',
+        data: [8, 8, 5, 5, 3.5, 3.5, 4], 
+      }]
+    };
+
+    const configB = {
+      type: 'bar',
+      data: dataB,
+      options: {}
+    };
+    // Fim do gráfico de Barras 2
+
+    // inicio do gráfico polar 1
+    const data2 = {
+        labels: [
+            'A',
+            'B',
+            'C',
+            'D',
+            'E',
+            'F'
+        ],
+        datasets: [{
+            label: 'Temperatura dos hectares',
+            data: [25, 35, 19, 25, 30, 15],
+            backgroundColor: [
+                'rgb(254,151,46)',
+                'rgb(213,106,0)',
+                'rgba(254,198,139)',
+                'rgb(254,151,46)',
+                'rgba(250,125,0)',
+                'rgba(254,198,139)',
+            ]
+        }] 
+    };
+
+    const config2 = {
+        type: 'polarArea',
+        data: data2,
+        options: {}
+    }
+    // fim do gráfico polar 1
+
+
+    // inicio do gráfico polar 2
+    const data3 = {
+        labels: [
+            'A',
+            'B',
+            'C',
+            'D',
+            'E',
+            'F'
+        ],
+        datasets: [{
+            label: 'Umidade dos hectares',
+            data: [50, 100, 25, 50, 25, 50],
+            backgroundColor: [
+                'rgb(120,179,223)',
+                'rgb(0,56,131)',
+                'rgba(172,206,231)',
+                'rgb(120,179,223)',
+                'rgba(172,206,231)',
+                'rgb(120,179,223)',
+            ]
+
+        }]
+    };
+
+    const config3 = {
+        type: 'polarArea',
+        data: data3,
+        options: {}
+    }
+    // fim do gráfico polar 2
+  </script>
+
+    <script>
+    const myChartLine = new Chart(
+      document.getElementById('canvasChartLine'),
+      config
+    );
+
+    const myChartBar = new Chart(
+      document.getElementById('canvasChartBar'),
+      config1
+    );
+    
+    const myChartPolar = new Chart(
+      document.getElementById('canvasChartPolarTempe'),
+      config2
+    );
+
+    const myChartPolar1 = new Chart(
+      document.getElementById('canvasChartPorlarUmi'),
+      config3
+    );
+
+    const myChartLine2 = new Chart(
+      document.getElementById('canvasChartLine2'),
+      configA
+    );
+
+    const myChartBar2 = new Chart(
+      document.getElementById('canvasChartBar2'),
+      configB
+    );
+
+    </script>
+
+    <script>
+        function buttonDashboard() {
+            noneEblockDash.style.display = 'block';
+            graficoLinhas2.style.display = 'none';
+            graficoBarras2.style.display = 'none';
+        }
+
+
+        function buttonGrafico1() {
+            noneEblockDash.style.display = 'none';
+            graficoLinhas2.style.display = 'block';
+            graficoBarras2.style.display = 'none';
+        }
+
+        function buttonGrafico2() {
+            noneEblockDash.style.display = 'none';
+            graficoLinhas2.style.display = 'none';
+            graficoBarras2.style.display = 'block';
+        }
+    </script>
