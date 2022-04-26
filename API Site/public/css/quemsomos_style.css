@@ -1,0 +1,235 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.geral {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10vh;
+}
+
+/* NAV BAR  */
+.container {
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #0C120C;
+    height: 15vh;
+    width: 100%;
+}
+
+.container img {
+    width: 5vw;
+}
+
+.container ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 60%;
+    list-style: none;
+}
+
+.container a {
+    font-size: 1.1em;
+    text-decoration: none;
+    color: #fff;
+}
+
+.container li:hover {
+    border-bottom: 2px solid #56bd56;
+}
+
+
+.btn-login {
+    color: #0C120C;
+    padding: 5px 15px;
+    font-size: 1em;
+    background-color: #fff;
+    border-radius: 7px;
+    border: 2px solid #fff;
+    cursor: pointer;
+}
+.now {
+    font-weight: bold;
+}
+.now:hover {
+    border-bottom: 2px solid #ffffff;
+}
+
+/* SOBRE NÓS */
+.banner-qs {
+    background-image: url(../Imagens/plant_soja2.jpeg);
+    background-repeat: no-repeat;
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.opacidade-qs h1 {
+    color: #ecf0f1;
+}
+
+.opacidade-qs {
+    background-color: rgba(0, 0, 0, 0.70);
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sobre-nos {
+    justify-content: center;
+    text-align: justify;
+    background-color: rgba(224, 224, 224, 0.70);
+    width: 60vw;
+    height: 50vh;
+    padding: 10px 30px;
+    font-weight: 500;
+    border-radius: 7px;
+    box-shadow: 0 0 50px  #000000 ;
+}
+
+/* DÚVIDAS */
+
+
+.back-green {
+    background-color: #56bd56;
+    align-items: center;
+    height: auto;
+    width: 30vw;
+    border-radius: 7px;
+    margin-top: 5vh;
+    text-align: center;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+    box-shadow: 0 5px 15px #000000;
+}
+.container-inp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.input-all {
+    display: inline-block;
+    background-color: #ecf0f1;
+    width: 75%;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.ipt {
+    height: 5vh;
+    border: none;
+    background-color: #ecf0f1;
+    margin: 1vh;
+    width: 100%;
+}
+
+.area{
+    height: 10vh;
+    border: none;
+    background-color: #ecf0f1;
+    margin: 1vh;
+    width: 100%;
+}
+.enviar {
+    border-radius: 7px;
+    color: #56bd56;
+    border: 1px solid #000000;
+    background-color: #ffffff;
+    font-size: 0.85em;
+    margin-top: 5vh;
+    padding: 10px 50px;
+    cursor: pointer;
+}
+
+.enviar:hover {
+    background-color: #56bd56;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    transition: 0.5s;
+}
+
+.icon {
+    color: #56bd56;
+}
+
+/* FOOTER  */
+#footer {
+    bottom: 0;
+    background-color: #0C120C;
+    color: #ffffff;
+    height: 29vh;
+    border-top: 1px solid #ffffff;
+    padding: 3vh;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.contato p {
+    font-size: 1.0em;
+    font-weight: bold;
+}
+
+#footer img {
+    width: 30px;
+    margin: 2px;
+}
+
+.logotipo-footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    margin-top: 20vh;
+}
+
+.container-sociais {
+    background-color: #ffffff;
+    border-radius: 5px;
+    width: 8.4vw;
+    padding: 2px;
+    margin-top: 5px;
+    margin-bottom: 30px;
+}
+
+.btn-footer {
+    background-color: #ecf0f1;
+    border: none;
+    width: 8vw;
+    height: 4vh;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-footer:hover {
+    background-color: #56bd56;
+    border: 2px solid #ffffff;
+    transition: 0.5s;
+}

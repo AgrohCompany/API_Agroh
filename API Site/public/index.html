@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="js/funcoes.js"></script>
+
+    <link rel="stylesheet" href="css/home_style.css">
+
+    <link rel="stylesheet" href="css/quemsomos_style.css">
+
+    <link rel="shortcut icon" href="Imagens/logo-agroh.png" type="image/x-icon">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <title>Agroh Company | Home</title>
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <img src="Imagens/logo-agroh.png" alt="">
+            <ul>
+                <li><a href="#produto">Nosso Produto</a></li>
+                <li><a href="#simulador">Simulador</a></li>
+                <li><a href="quemsomos.html">Quem Somos</a></li>
+                <li><a href="#footer">Fale Conosco</a></li>
+                <a href="login.html"><button class="btn-login">Entrar</button></a>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="img-fundo">
+        <div class="opacidade">
+            <div class="texto">
+                <p>Agroh Company</p>
+                <span>Sua plantação desenvolvendo <br> com o melhor monitoramento</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="quadrado">
+        <img src="Imagens/soja-home.png" alt="">
+    </div>
+
+    <div id="simulador">
+        <div class="card">
+            <p>
+                Com a MoveTech você terá as vantagens de ter sua cana e sua soja
+                monitorada constantemente, aqui nós presamos pela qualidade e
+                desenvolvimento de seus produtos garantindo sempre o melhor.
+            </p>
+            <p>
+                É recomendado um sensor por hectare, para obter uma boa precisão e
+                objetiva, e você não precisar obter muitos sensores e gastar dinheiro
+                desnecessariamente.
+            </p>
+            <h2>Simulador</h2>
+            <h3>Preencha:</h3>
+            <span>Sensores</span>
+            <input id="sensor_input" type="number" placeholder="Hectares em sua plantação" />
+            <span>Lucro Atual</span>
+            <input id="dinheiro" type="number" placeholder="Lucro sem a MoveTech" />
+            <span>Manutenção</span>
+            <input id="manutencao" type="number" placeholder="Custo da sua manutenção" />
+            <button class="btn" onclick="mostrar()">Simular</button><br>
+            <span id="valores"></span>
+        </div>
+    </div>
+
+    <div id="produto">
+        <div id="produto-canaesoja">
+            <div class="texto-produto">
+                <h2>Problematica</h2>
+                <p>Monitoramos a sua plantação para não haver perda do produto, 50% do produto é pedido em campo por
+                    falta de monitoramento e má ambientação que os produtos são inseridos, a Soja e a Cana são produtos
+                    que precisam de uma temperatura adequada, como também sua umidade para ter um bom desenvolvimento.
+                </p>
+
+                <h2>Solução</h2>
+                <p>Nós monitoramos a sua plantação para manter a qualidade do seu produto e melhor
+                    rendimento através de um arduino e o sensor de temperatura e umidade DHT11, assim captamos os dados
+                    mostrando em uma dashboard facilitando na tomada de decições em cima de dados concretos. Tornando
+                    mais acessivel para o nosso cliente a manutenção e cultivo de sua plantação.
+                </p>
+                <div class="problematica">
+                    <div class="img-sensor">
+                        <img src="Imagens/placa-Arduino.png" alt="">
+                        <img src="Imagens/sensor_dht11.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="footer-detalhes">
+                <div class="contato">
+                    <p>Central de contato <br> (11)4002-8922<br>agrohcompany.contato@gmail.com<br></p>
+                    <span class="txt-footer">Endereço: Rua Haddock Lobo N° 595 <br> São paulo - SP | CEP: 01414-001</span>
+                </div>
+            </div>
+            <div class="logotipo-footer">
+                <img src="Imagens/logo-agroh.png" alt="">
+            <span>Copyright © 2022 Agroh Company LTDA</span>
+            </div>
+            <ul>
+                <span class="txt-footer">Nos acompanhe também:</span>
+                <div class="container-sociais">
+                    <a href="https://api.whatsapp.com/send?phone=5511966716409&text=Ol%C3%A1%2C%20gostaria%20de%20tirar%20uma%20d%C3%BAvida"
+                        target="_blank"><img src="Imagens/whatsapp.png"></a>
+                    <a href="https://www.instagram.com/agrohcompany/" target="_blank"><img src="Imagens/instagram.png"></a>
+                    <a href="https://www.facebook.com/Agroh-Company-111308478226300" target="_blank"><img src="Imagens/facebook.png"></a>
+                </div>
+                <a href="#"><button class="btn-footer">Voltar ao topo</button></a>
+            </ul>
+        </div>
+
+    </footer>
+</body>
+
+
+</html>
+<script>
+    function mostrar() {
+        var sensor = Number(sensor_input.value);
+        var instalacao = 70 * sensor + 2500;
+        var manu = Number(manutencao.value) * 0.85;
+        var amenos = Number(manutencao.value) * 0.15;
+        var lucro = Number(dinheiro.value) * 1.3;
+        var amais = Number(dinheiro.value) * 0.3;
+        var mensalidade = 1400 + (sensor * 10);
+
+        if (sensor_input.value == ""  || manutencao.value == "" || dinheiro.value == "") {
+            alert (`Preencha todos os campos para simular`);
+        } else if (sensor_input.value <= 0) {
+            alert (`Preencha o campo "Sensores" com um número maior que 0.`);
+        } else if (manutencao.value <= 0) {
+            alert (`Preencha o campo "Lucro Atual" com um número maior que 0.`);
+        } else if (dinheiro.value <= 0) {
+            alert (`Preencha o campo "Manutenção" com um número maior que 0.`);
+        } else {
+            valores.innerHTML = `Sua mensalidade será de R$${mensalidade.toFixed(
+            2
+        )}. Por sua vez a instalação ficará em torno de R$${instalacao.toFixed(
+            2
+        )}, pois quanto mais sensores forem adquiridos, maior será o preço da instalação, bem como seus ganhos mensais. Além disso, seu custo de manutenção cairá para, aproximadamente, R$${manu.toFixed(
+            2
+        )}, economizando em torno de R$${amenos.toFixed(2)}. Seu lucro previsto será de R$${lucro.toFixed(2)}, R$${amais.toFixed(
+            2
+        )} a mais do que ganharia sem os sensores`;
+        }
+
+        
+    }
+</script>

@@ -1,0 +1,229 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* NAV BAR  */
+.container {
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #0C120C;
+    height: 15vh;
+    width: 100%;
+}
+
+.container img {
+    width: 4vw;
+    margin-left: 110px;
+}
+
+.container ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 60%;
+    list-style: none;
+}
+
+.container a {
+    font-size: 1em;
+    text-decoration: none;
+    color: #fff;
+}
+
+.container li:hover {
+    border-bottom: 2px solid #56bd56;
+}
+
+
+.btn-login {
+    color: #0C120C;
+    padding: 5px 15px;
+    font-size: 1em;
+    background-color: #fff;
+    border-radius: 7px;
+    border: 5px solid #fff;
+    cursor: pointer;
+}
+.now {
+    font-weight: bold;
+}
+.now:hover {
+    border-bottom: 2px solid #ffffff;
+}
+
+/* BANNER  */
+.img-fundo {
+    background-image: url("../Imagens/plant_soja.jpeg");
+    background-repeat: no-repeat;
+    height: 80vh;
+    width: 100%;
+}
+
+.opacidade {
+    display: flex;
+    background-color: #0C120C;
+    height: 90vh;
+    opacity: 85%;
+    justify-content: flex-end;
+}
+
+.quadrado {
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-color: #56bd56;
+    height: 25vh;
+    transform-origin: right top;
+    transform: skewY(3deg);
+}
+
+.opacidade p {
+    display: flex;
+    height: 15vh;
+    font-size: 5.0em;
+    font-weight: bold;
+    color: #ffffff;
+    align-items: center;
+    justify-content: center;
+}
+
+.opacidade span {
+    display: flex;
+    height: 7vh;
+    font-size: 3.0em;
+    font-weight: bold;
+    color: #ffffff;
+    align-items: center;
+    justify-content: center;
+}
+
+.texto {
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    width: 55%;
+}
+
+/* PRODUTO SOJE & CANA */
+#produto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 120vh;
+    margin-top: 50px;
+}
+
+#produto-canaesoja {
+    background-color: #9ee37d;
+    border-radius: 10px;
+    height: 100vh;
+    width: 70%;
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#produto-canaesoja .texto-produto {
+    width: 90%;
+    font-size: 1.2em;
+    text-align: justify;
+}
+
+.texto-produto h2 {
+    text-align: center;
+}
+
+.img-sensor img {
+    width: 190px;
+}
+
+.img-sensor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* CANA */
+
+.div-cana {
+    display: flex;
+    justify-content: end;
+    margin-top: 0vh;
+}
+
+.cana-home{
+    width: 20vw;
+}
+
+/* SIMULADOR */
+#simulador {
+    display: flex;
+    justify-content: center;
+
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 60%;
+    border: 2px solid darkgreen;
+    margin-left: 2%;
+    margin-top: 1vh;
+    padding: 15px;
+    border-radius: 7px;
+    background-color: whitesmoke;
+    box-shadow: 10px 7px 10px #cccccc;
+}   
+
+input[type="number"] {
+    background: none;
+    border: 1px solid darkgreen;
+    border-radius: 4px;
+    padding: 5px;   
+    width: 33%;
+    outline: none;
+    transition: 0.1s;
+}
+
+input[type=number]:focus {
+    border: 3px solid #0d2c0d;
+    border-top: none;
+    border-right: none;
+}
+
+.btn {
+    align-self: center;
+    margin: 10px 0px;
+    width: 33%;
+    padding: 10px 5px;
+    background-color: darkgreen;
+    cursor: pointer;
+    border: 3px solid darkgreen;
+    font-size: larger;
+    outline: none;
+    border-radius: 10px;
+    color: #ffffff;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    background: none;
+    color: darkgreen;
+}
+
+.btn:active {
+    background-color: rgb(224, 224, 224);
+}
+
+
