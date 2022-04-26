@@ -76,8 +76,12 @@ body {
     align-items: center;
 }
 
+.opacidade-qs h1 {
+    color: #ecf0f1;
+}
+
 .opacidade-qs {
-    background-color: rgba(0, 0, 0, 0.40);
+    background-color: rgba(0, 0, 0, 0.70);
     height: 80vh;
     width: 100%;
     display: flex;
@@ -89,10 +93,11 @@ body {
 
 .sobre-nos {
     justify-content: center;
-    text-align: center;
+    text-align: justify;
     background-color: rgba(224, 224, 224, 0.70);
     width: 60vw;
     height: 50vh;
+    padding: 10px 30px;
     font-weight: 500;
     border-radius: 7px;
     box-shadow: 0 0 50px  #000000 ;
@@ -173,7 +178,7 @@ body {
     bottom: 0;
     background-color: #0C120C;
     color: #ffffff;
-    height: 25vh;
+    height: 29vh;
     border-top: 1px solid #ffffff;
     padding: 3vh;
 }
@@ -201,7 +206,7 @@ body {
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    margin-top: 11vh;
+    margin-top: 20vh;
 }
 
 .container-sociais {

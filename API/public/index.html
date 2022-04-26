@@ -136,7 +136,17 @@
         var lucro = Number(dinheiro.value) * 1.3;
         var amais = Number(dinheiro.value) * 0.3;
         var mensalidade = 1400 + (sensor * 10);
-        valores.innerHTML = `Sua mensalidade será de R$${mensalidade.toFixed(
+
+        if (sensor_input.value == ""  || manutencao.value == "" || dinheiro.value == "") {
+            alert (`Preencha todos os campos para simular`);
+        } else if (sensor_input.value <= 0) {
+            alert (`Preencha o campo "Sensores" com um número maior que 0.`);
+        } else if (manutencao.value <= 0) {
+            alert (`Preencha o campo "Lucro Atual" com um número maior que 0.`);
+        } else if (dinheiro.value <= 0) {
+            alert (`Preencha o campo "Manutenção" com um número maior que 0.`);
+        } else {
+            valores.innerHTML = `Sua mensalidade será de R$${mensalidade.toFixed(
             2
         )}. Por sua vez a instalação ficará em torno de R$${instalacao.toFixed(
             2
@@ -145,5 +155,8 @@
         )}, economizando em torno de R$${amenos.toFixed(2)}. Seu lucro previsto será de R$${lucro.toFixed(2)}, R$${amais.toFixed(
             2
         )} a mais do que ganharia sem os sensores`;
+        }
+
+        
     }
 </script>
