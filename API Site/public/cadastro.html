@@ -37,6 +37,18 @@
                     <input class="ipt" type="text" name="nome" id="nome_input" placeholder="Nome">
                 </div>
 
+                <!-- CPF/CNPJ -->
+                <div class="input-all">
+                    <i class="uil uil-align-left icon"></i>
+                    <input class="ipt" type="text" name="cpf" id="cpf_input" placeholder="CPF">
+                </div>
+                
+                <!-- TELEFONE -->
+                <div class="input-all">
+                    <i class="uil uil-phone-alt icon"></i>
+                    <input class="ipt" type="text" name="telefone" id="telefone_input" placeholder="Telefone">
+                </div>
+
                 <!-- E-MAIL -->
                 <div class="input-all">
                     <i class="uil uil-at icon"></i>
@@ -53,36 +65,6 @@
                 <div class="input-all">
                     <i class="uil uil-padlock icon"></i>
                     <input class="ipt" type="password" name="senha" id="confirmacao_senha_input" placeholder="Confirme sua senha">
-                </div>
-
-                <!-- CPF/CNPJ -->
-                <div class="input-all">
-                    <i class="uil uil-align-left icon"></i>
-                    <input class="ipt" type="text" name="cpf/cnpf" id="cpf_cnpj_input" placeholder="CPF/CNPJ">
-                </div>
-
-                <!-- ENDEREÇO -->
-                <div class="input-all">
-                    <i class="uil uil-location-point icon"></i>
-                    <input class="ipt" type="text" name="rua" id="endereco_input" placeholder="Endereço">
-                </div>
-
-                <!-- CEP -->
-                <div class="input-all">
-                    <i class="uil uil-location-point icon"></i>
-                    <input class="ipt" type="text" name="cep" id="cep_input" placeholder="CEP">
-                </div>
-
-                <!-- COMPLEMENTO -->
-                <div class="input-all">
-                    <i class="uil uil-align-left icon"></i>
-                    <input class="ipt" type="text" name="complemento" id="complemento_input" placeholder="Complemento">
-                </div>
-
-                <!-- ESTADO -->
-                <div class="input-all">
-                    <i class="uil uil-align-left icon"></i>
-                    <input class="ipt" type="text" name="complemento" id="estado_input" placeholder="Estado Ex: (SP)">
                 </div>
 
                 <!-- LEMBRAR -->
@@ -143,13 +125,10 @@
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
-        var cpf_cnpjVar = cpf_cnpj_input.value;
-        var enderecoVar = endereco_input.value;
-        var cepVar = cep_input.value;
-        var complementoVar = complemento_input.value;
-        var estadoVar = estado_input.value;
+        var cpfVar = cpf_input.value;
+        var telefoneVar = telefone_input.value;
 
-        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || cpf_cnpjVar == "" || enderecoVar == "" || cepVar == "" || complementoVar == "" || estadoVar == "") {
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || cpfVar == "" || telefoneVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "Preencha todos os campos para prosseguir!";
 
@@ -192,11 +171,8 @@
                 nomeServer:  nomeVar,
                 emailServer: emailVar,
                 senhaServer: senhaVar,
-                cpf_cnpjServer:  cpf_cnpjVar,
-                enderecoServer: enderecoVar,
-                cepServer: cepVar,
-                complementoServer: complementoVar,
-                estadoServer: estadoVar
+                cpfServer:  cpfVar,
+                telefoneServer: telefoneVar,
             })
         }).then(function (resposta) {
 

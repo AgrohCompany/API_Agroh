@@ -65,11 +65,8 @@ function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    var cpf_cnpj = req.body.cpf_cnpjServer;
-    var endereco = req.body.enderecoServer;
-    var cep = req.body.cepServer;
-    var complemento = req.body.complementoServer;
-    var estado = req.body.estadoServer;
+    var cpf = req.body.cpfServer;
+    var telefone = req.body.telefoneServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -78,20 +75,14 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else if (cpf_cnpj == undefined) {
-        res.status(400).send("Seu Cpf ou Cnpj está undefined!");
-    } else if (endereco == undefined) {
-        res.status(400).send("Seu endereço está undefined!");
-    } else if (cep == undefined) {
-        res.status(400).send("Seu cep está undefined!");
-    } else if (complemento == undefined) {
-        res.status(400).send("Seu complemento está undefined!");
-    } else if (estado == undefined) {
-        res.status(400).send("Seu estado está undefined!");
+    } else if (cpf == undefined) {
+        res.status(400).send("Seu Cpf está undefined!");
+    } else if (telefone == undefined) {
+        res.status(400).send("Seu telefone está undefined!");
     } else {
         
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, cpf_cnpj, endereco, cep, complemento, estado)
+        usuarioModel.cadastrar(nome, email, senha, cpf, telefone)
             .then(
                 function (resultado) {
                     res.json(resultado);
