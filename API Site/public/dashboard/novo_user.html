@@ -1,0 +1,72 @@
+<!DOCTYPE html>  
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- esse link abaixo serve para deixar o icon do logo no navegador -->
+    <link rel="shortcut icon" href="Imagens/logo-agroh.png">
+    <link rel="stylesheet" href="dashboard_style.css">
+
+    <title>AgrohCompany | Dashboard</title>
+
+    <!-- 
+    já esse link é dos gráficos de linhas e barras que temos,
+    não sei se os polares vão precisar de link, caso sim, ele entra aqui
+    em uma nova tag <script> para ele
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="dashboard_style.css">
+
+    <script src="../js/funcoes.js"></script>
+</head>
+<body onload="validarSessao()">
+  <!-- essa tag div global é toda a nossa naveção da página, ela foi difivida em partes -->
+  <div id="global" class="global-class">
+
+    <!-- uma das partes é a header-left "cabeçalho esquerdo da página" -->
+      <div id="header-left" class="header-left-class">
+
+        <div class="caixa-user-class">
+            <h2>Olá, <span id="username">username</span></h2>
+        </div>
+
+        <div class="caixa2-postIt-class"> 
+            <img src="Imagens/paperclip.png" style="height: 32px; display:flex; justify-content: flex-start">
+        </div>
+        
+        <div id="calendario" class="caixa3-calendario-class">
+            <img src="Imagens/Legenda.png" alt="" style="display: flex; height: 35vh; width: 35vw">
+        </div>
+
+      </div>
+    <!-- fim do header-left, tudo que faz parte dela, no css estão com as bordas em RED para auxiliar na construção -->
+    
+    <!-- 
+      outra parte é header-right toda parte direita da nossa página, temos uma mini nave, onde tem o logo, botões
+      e logo abaixo os gráficos
+    -->
+      <div id="header-right" class="header-right-class">
+
+        <!-- inicio da nave -->
+        <div id="nave-header-right" class="nave-header-right-class">
+            <img src="Imagens/logo-agroh&nome.jpeg" alt="logo-agrohCompany">
+            <ul>
+                <li><a href="#"><img src="Imagens/envelope.png" alt="imagem-envelope"></a></li>
+                <li><a href="#"><img src="Imagens/notificacao.png" alt="imagem-notificação"></a></li>
+                <li><a href="#"><img src="Imagens/avatar.png" alt="imagem-avatar"></a></li>
+                <li><a href="#"><img src="Imagens/sair.png" alt="imagem-saida"></a></li>
+            </ul>
+        </div>
+        <!-- fim da nave, tudo que faz parte dela, no css estão com as bordas em greenyellow -->
+
+    
+
+        <!-- inicio do body onde ficam os gráficos, no css ele está com as bordas em grey -->
+        
+  </div>
+  <!-- fim da tag div global -->
+</body>
+</html>
