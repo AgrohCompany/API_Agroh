@@ -87,7 +87,7 @@
                     <div class="body5-1-chartsPolares-class">
                         <br>
                         Temperatura dos hectares
-                        <canvas id="canvasChartPolarTempe" class="tamanhoGraficosPolares-class"></canvas>
+                        <canvas id="dht11Umidade" class="tamanhoGraficosPolares-class"></canvas>
                     </div>
 
                 </div>
@@ -105,7 +105,7 @@
                     <div class="body5-1-chartsPolares-class">
                         <br>
                         Umidade dos hectares
-                        <canvas id="canvasChartPorlarUmi" class="tamanhoGraficosPolares-class"></canvas>
+                        <canvas id="dht11Temperatura" class="tamanhoGraficosPolares-class"></canvas>
                     </div>
 
                 </div>
@@ -154,285 +154,123 @@
 </html>
 
 <script>
-    // Gráfico de linha
-    const labels = [
-      '06:00',
-      '07:00',
-    //   '08:00',
-      '09:00',
-      '10:00',
-    //   '11:00',
-      '12:00',
-      '13:00',
-    //   '14:00',
-      '15:00',
-      '16:00',
-    //   '17:00',
-    //   '18:00',
-      '19:00',
-      '20:00',
-    //   '21:00',
-    //   '22:00',
-      '23:00',
-      '00:00',
-      '03:00',
-    ];
-  
-    const data = {
-      labels: labels,
-      datasets: [{
-        label: 'Temperatuta (°C)',
-        backgroundColor: 'rgba(218,165,32)',
-        borderColor: 'rgba(218,165,32)',
-        data: [15, 17, 18, 19, 20, 26, 24, 23,20, 20, 19, 18, 16],
-        },
-        {
-        label: 'Umidade (%)',
-        backgroundColor: 'rgba(32,178,170)',
-        borderColor: 'rgba(32,178,170)',
-        data: [40, 52, 47, 52, 40, 47, 50, 44, 48, 50, 49, 50, 52], 
-      }]
-    };
-  
-    const config = {
-      type: 'line',
-      data: data,
-      options: {}
-    };
-    // Fim do gráfico de linha
+  /* -- dht11Umidade -- */
+  var contextoDht11Umidade = document.getElementById('dht11Umidade').getContext('2d');
+  contextoDht11Umidade.canvas.width = 1000;
+  contextoDht11Umidade.canvas.height = 300;
+  var dht11Umidade = new Chart(
+      contextoDht11Umidade,
+      {
+          type: 'line',
+          data: {
+              datasets: [{
+                  label: 'Umidade',
+                  type: 'line',
+                  borderColor: ['#45b3e7'],
+                  backgroundColor: ['#89cff0']
+              }]
+          },
+          options: {
+              scales: {
+                  xAxes: [{
+                      distribution: 'series',
+                      ticks: {
+                          beginAtZero: true
+                      }
+                  }],
+                  yAxes: [{
+                      scaleLabel: {
+                          display: true,
+                          labelString: 'Umidade'
+                      },
+                      ticks: {
+                          beginAtZero: true
+                      }
+                  }]
+              },
+              animation: {
+                  duration: 0
+              }
+          }
+      }
+  );
+  /* -- dht11Temperatura -- */
+  var contextoDht11Temperatura = document.getElementById('dht11Temperatura').getContext('2d');
+  contextoDht11Temperatura.canvas.width = 1000;
+  contextoDht11Temperatura.canvas.height = 300;
+  var dht11Temperatura = new Chart(
+      contextoDht11Temperatura,
+      {
+          type: 'line',
+          data: {
+              datasets: [{
+                  label: "Temperatura",
+                  type: 'line',
+                  borderColor: ['#ff3232'],
+                  backgroundColor: ['#ff7f7f']
+              }]
+          },
+          options: {
+              scales: {
+                  xAxes: [{
+                      distribution: 'series',
+                      ticks: {
+                          beginAtZero: true
+                      }
+                  }],
+                  yAxes: [{
+                      scaleLabel: {
+                          display: true,
+                          labelString: 'Luminosidade'
+                      },
+                      ticks: {
+                          beginAtZero: true
+                      }
+                  }]
+              },
+              animation: {
+                  duration: 0
+              }
+          }
+      }
+  );
 
-        // Gráfico de linha 2
-        const labelsA = [
-      '06:00',
-      '07:00',
-    //   '08:00',
-      '09:00',
-      '10:00',
-    //   '11:00',
-      '12:00',
-      '13:00',
-    //   '14:00',
-      '15:00',
-      '16:00',
-    //   '17:00',
-    //   '18:00',
-      '19:00',
-      '20:00',
-    //   '21:00',
-    //   '22:00',
-      '23:00',
-      '00:00',
-      '03:00',
-    ];
-  
-    const dataA = {
-      labels: labelsA,
-      datasets: [{
-        label: 'Temperatuta (°C)',
-        backgroundColor: 'rgba(218,165,32)',
-        borderColor: 'rgba(218,165,32)',
-        data: [15, 17, 18, 19, 20, 26, 24, 23,20, 20, 19, 18, 16],
-        },
-        {
-        label: 'Umidade (%)',
-        backgroundColor: 'rgba(32,178,170)',
-        borderColor: 'rgba(32,178,170)',
-        data: [40, 52, 47, 52, 40, 47, 50, 44, 48, 50, 49, 50, 52], 
-      }]
-    };
-  
-    const configA = {
-      type: 'line',
-      data: dataA,
-      options: {}
-    };
-    // Fim do gráfico de linha 2
+  var paginacao = {};
+  var tempo = {};
+  function obterDados(grafico, endpoint) {
+      var http = new XMLHttpRequest();
+      http.open('GET', 'http://localhost:3000/sensores/' + endpoint, false);
+      http.send(null);
+      var valores = JSON.parse(http.responseText);
+      if (paginacao[endpoint] == null) {
+          paginacao[endpoint] = 0;
+      }
+      if (tempo[endpoint] == null) {
+          tempo[endpoint] = 0;
+      }
+      // Exibir à partir do último elemento exibido anteriormente
+      var ultimaPaginacao = paginacao[endpoint];
+      paginacao[endpoint] = valores.length;
+      var valores = valores.slice(ultimaPaginacao);
+      valores.forEach((valor) => {
+          //Máximo de 60 itens exibidos no gráfico
+          if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+              grafico.data.labels.shift();
+              grafico.data.datasets[0].data.shift();
+          }
 
-    // Gráfico de Barras
-    const labels1 = [
-      '01/April',
-      '02/April',
-      '03/April',
-      '04/April',
-      '05/April',
-      '06/April',
-      '07/April',
-      
-    ];
+          grafico.data.labels.push(tempo[endpoint]++);
+          grafico.data.datasets[0].data.push(parseFloat(valor));
+          grafico.update();
+      })
+  }
 
-    const data1 = {
-      labels: labels1,
-      datasets: [{
-        label: 'Temperatuta Média (°C)',
-        backgroundColor: 'rgba(218,165,32)',
-        borderColor: 'rgba(218,165,32)',
-        data: [15, 17, 18, 19, 20, 26, 24 ],
-        },
-        {
-        label: 'Umidade Média (%)',
-        backgroundColor: 'rgba(32,178,170)',
-        borderColor: 'rgba(32,178,170)',
-        data: [8, 8, 5, 5, 3.5, 3.5, 4], 
-      }]
-    };
+  setInterval(() => {
+      obterDados(dht11Umidade, 'dht11/umidade');
+      obterDados(dht11Temperatura, 'dht11/temperatura');
+      obterDados(luminosidade, 'luminosidade');
+      obterDados(lm35Temperatura, 'lm35/temperatura');
+      obterDados(chave, 'chave');
+  }, 1000);
 
-    const config1 = {
-      type: 'bar',
-      data: data1,
-      options: {}
-    };
-    // Fim do gráfico de Barras
-
-    // Gráfico de Barras 2
-    const labelsB = [
-      '01/April',
-      '02/April',
-      '03/April',
-      '04/April',
-      '05/April',
-      '06/April',
-      '07/April',
-      
-    ];
-
-    const dataB = {
-      labels: labelsB,
-      datasets: [{
-        label: 'Temperatuta Média (°C)',
-        backgroundColor: 'rgba(218,165,32)',
-        borderColor: 'rgba(218,165,32)',
-        data: [15, 17, 18, 19, 20, 26, 24 ],
-        },
-        {
-        label: 'Umidade Média (%)',
-        backgroundColor: 'rgba(32,178,170)',
-        borderColor: 'rgba(32,178,170)',
-        data: [8, 8, 5, 5, 3.5, 3.5, 4], 
-      }]
-    };
-
-    const configB = {
-      type: 'bar',
-      data: dataB,
-      options: {}
-    };
-    // Fim do gráfico de Barras 2
-
-    // inicio do gráfico polar 1
-    const data2 = {
-        labels: [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E',
-            'F'
-        ],
-        datasets: [{
-            label: 'Temperatura dos hectares',
-            data: [25, 35, 19, 25, 30, 15],
-            backgroundColor: [
-                'rgb(254,151,46)',
-                'rgb(213,106,0)',
-                'rgba(254,198,139)',
-                'rgb(254,151,46)',
-                'rgba(250,125,0)',
-                'rgba(254,198,139)',
-            ]
-        }] 
-    };
-
-    const config2 = {
-        type: 'polarArea',
-        data: data2,
-        options: {}
-    }
-    // fim do gráfico polar 1
-
-
-    // inicio do gráfico polar 2
-    const data3 = {
-        labels: [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E',
-            'F'
-        ],
-        datasets: [{
-            label: 'Umidade dos hectares',
-            data: [50, 100, 25, 50, 25, 50],
-            backgroundColor: [
-                'rgb(120,179,223)',
-                'rgb(0,56,131)',
-                'rgba(172,206,231)',
-                'rgb(120,179,223)',
-                'rgba(172,206,231)',
-                'rgb(120,179,223)',
-            ]
-
-        }]
-    };
-
-    const config3 = {
-        type: 'polarArea',
-        data: data3,
-        options: {}
-    }
-    // fim do gráfico polar 2
-  </script>
-
-    <script>
-    const myChartLine = new Chart(
-      document.getElementById('canvasChartLine'),
-      config
-    );
-
-    const myChartBar = new Chart(
-      document.getElementById('canvasChartBar'),
-      config1
-    );
-    
-    const myChartPolar = new Chart(
-      document.getElementById('canvasChartPolarTempe'),
-      config2
-    );
-
-    const myChartPolar1 = new Chart(
-      document.getElementById('canvasChartPorlarUmi'),
-      config3
-    );
-
-    const myChartLine2 = new Chart(
-      document.getElementById('canvasChartLine2'),
-      configA
-    );
-
-    const myChartBar2 = new Chart(
-      document.getElementById('canvasChartBar2'),
-      configB
-    );
-
-    </script>
-
-    <script>
-        function buttonDashboard() {
-            noneEblockDash.style.display = 'block';
-            graficoLinhas2.style.display = 'none';
-            graficoBarras2.style.display = 'none';
-        }
-
-
-        function buttonGrafico1() {
-            noneEblockDash.style.display = 'none';
-            graficoLinhas2.style.display = 'block';
-            graficoBarras2.style.display = 'none';
-        }
-
-        function buttonGrafico2() {
-            noneEblockDash.style.display = 'none';
-            graficoLinhas2.style.display = 'none';
-            graficoBarras2.style.display = 'block';
-        }
-    </script>
+</script>

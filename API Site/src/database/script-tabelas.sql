@@ -58,7 +58,7 @@ regiaoFazenda varchar(20),
 foreign key (fkFazenda) references fazenda(idFazenda)
 );
 
-create table dados_sensor (
+create table dado_sensor (
 idDado int primary key auto_increment,
 fkSensor int,
 temperatura double,
