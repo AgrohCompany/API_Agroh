@@ -226,4 +226,9 @@ input[type=number]:focus {
     background-color: rgb(224, 224, 224);
 }
 
+.suport {
+    display: flex;
+    background-size: 100% 100%;
+}
+
 
