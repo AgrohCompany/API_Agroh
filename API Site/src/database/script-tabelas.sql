@@ -58,16 +58,14 @@ regiaoFazenda varchar(20),
 foreign key (fkFazenda) references fazenda(idFazenda)
 );
 
-create table dado_sensor (
+create table dados_sensor (
 idDado int primary key auto_increment,
 fkSensor int,
 temperatura double,
 umidade double,
-dtDado datetime,
+momento datetime default current_timestamp,
 foreign key (fkSensor) references sensor(idSensor)
 );
-
-
 
 
 /* para sql server - remoto - produção */
