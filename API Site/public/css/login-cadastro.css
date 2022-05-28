@@ -241,3 +241,7 @@ body {
   .banner #div_erros_login {
     margin-top: 15px;
   }
+
+  .text-copy {
+      margin-top: 50vh;
+  }
