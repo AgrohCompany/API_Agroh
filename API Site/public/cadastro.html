@@ -67,6 +67,12 @@
                     <input class="ipt" type="password" name="senha" id="confirmacao_senha_input" placeholder="Confirme sua senha">
                 </div>
 
+                <!-- ID EMPRESA -->
+                <div class="input-all">
+                    <i class="uil uil-briefcase-alt icon"></i>
+                    <input class="ipt" type="text" name="cpf" id="empresa_input" placeholder="ID da sua Empresa">
+                </div>
+
                 <!-- LEMBRAR -->
                 <div class="checkbox">
                     <input class="check" type="checkbox" name="" id="remenber">
@@ -127,11 +133,13 @@
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
         var cpfVar = cpf_input.value;
         var telefoneVar = telefone_input.value;
+        var idEmpresaVar = empresa_input.value;
+        var tipoVar = 1;
+        var admVar = null
 
-        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || cpfVar == "" || telefoneVar == "") {
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || cpfVar == "" || telefoneVar == "" || idEmpresaVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "Preencha todos os campos para prosseguir!";
-
             finalizarAguardar();
             return false;
         }
@@ -173,6 +181,9 @@
                 senhaServer: senhaVar,
                 cpfServer:  cpfVar,
                 telefoneServer: telefoneVar,
+                idEmpresaServer: idEmpresaVar,
+                tipoServer: tipoVar,
+                admServer: admVar,
             })
         }).then(function (resposta) {
 

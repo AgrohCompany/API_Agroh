@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt"> 
+<html lang="pt">
 
 <head>
     <meta charset="UTF-8">
@@ -147,7 +147,10 @@
 
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
+                    sessionStorage.FK_EMPRESA = json.fkEmpresa;
+                    sessionStorage.FK_ADM = json.fkUsuarioAdm;
+                    sessionStorage.FK_TIPO = json.fkTipo
 
                     setTimeout(function () {
                         window.location = "./dashboard/dashboard_Agroh.html";
@@ -176,4 +179,16 @@
         cardErro.style.display = "none"
     }
 
+</script>
+<script>
+    function mostrar() {
+        iptSenha.type = "text"
+        icon_mostrar.style.display = "none"
+        icon_esconder.style.display = "block"
+    }
+    function esconder() {
+        iptSenha.type = "password"
+        icon_mostrar.style.display = "block"
+        icon_esconder.style.display = "none"
+    }
 </script>

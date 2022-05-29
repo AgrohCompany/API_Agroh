@@ -25,24 +25,23 @@
     <script src="../js/funcoes.js"></script>
 </head>
 
-<body onload="validarSessao()">
+<body >
     <!-- essa tag div global é toda a nossa naveção da página, ela foi difivida em partes -->
-    <div id="global" class="global-class">
+    <div id="global" class="global-class" onload="validarSessao()">
 
         <!-- uma das partes é a header-left "cabeçalho esquerdo da página" -->
         <div id="header-left" class="header-left-class">
             
             <div class="caixa-user-class">
-                <h2>Olá, <span id="username">Username</span></h2>
+                <h2>Olá, <span id="b_usuario"></span></h2>
             </div>
 
             <div class="caixa2-postIt-class">
                 <img src="Imagens/paperclip.png" style="height: 32px; display:flex; justify-content: flex-start">
             </div>
 
-            <!-- <div id="calendario" class="caixa3-calendario-class">
-                <img src="Imagens/Legenda.png" alt="" style="display: flex; height: 35vh; width: 35vw">
-            </div> -->
+            <div id="calendario" class="caixa3-calendario-class">
+            </div>
 
         </div>
         <!-- fim do header-left, tudo que faz parte dela, no css estão com as bordas em RED para auxiliar na construção -->
@@ -57,10 +56,12 @@
             <div id="nave-header-right" class="nave-header-right-class">
                 <img src="Imagens/logo-agroh&nome.jpeg" alt="logo-agrohCompany">
                 <ul>
-                    <li><a href="#"><img src="Imagens/envelope.png" alt="imagem-envelope"></a></li>
-                    <li><a href="#"><img src="Imagens/notificacao.png" alt="imagem-notificação"></a></li>
-                    <li><a href="#"><img src="Imagens/help-desk.png" alt="imagem-avatar"></a></li>
-                    <li><a href="#"><img src="Imagens/sair.png" alt="imagem-saida"></a></li>
+                    <!-- <li><a href="#"><img src="Imagens/envelope.png" alt="imagem-envelope"></a></li>
+                        <li><a href="#"><img src="Imagens/notificacao.png" alt="imagem-notificação"></a></li> -->
+                        <li><a href="dashboard_Agroh.html"><img src="Imagens/home.png" alt=""></a></li>
+                        <li><a href="https://app.pipefy.com/public/form/nfSUmU93" target="_blank"><img src="Imagens/help-desk.png" alt="imagem-avatar"></a></li>
+                        <li><a href="novo_user.html"><img src="Imagens/add_user.png" alt=""></a></li>
+                    <li><img src="Imagens/sair.png" alt="imagem-saida" onclick="limparSessao()" style="cursor: pointer;"></li>
                 </ul>
             </div>
             <!-- fim da nave, tudo que faz parte dela, no css estão com as bordas em greenyellow -->
@@ -86,19 +87,19 @@
                         <!-- none e block em teste-->
                         <div class="body2-container-analytics-temp">
                             <div class="analytics_temp">Temperatura</div>
-                            <div class="analytics1">19º<br>Crítico</div>
-                            <div class="analytics2">22º<br>Alerta</div>
-                            <div class="analytics3">25º<br>Ideal</div>
-                            <div class="analytics4">30º<br>Alerta</div>
-                            <div class="analytics5">35º<br>Crítico</div>
+                            <div class="analytics1"> < 20º<br>Crítico</div>
+                            <div class="analytics2">20º - 22º<br>Alerta</div>
+                            <div class="analytics3">23º - 26º<br>Ideal</div>
+                            <div class="analytics4">27º - 30º<br>Alerta</div>
+                            <div class="analytics5"> > 30º<br>Crítico</div>
                         </div>
                         <div class="body2-container-analytics-umidade">
                             <div class="analytics_umid">Umidade</div>
-                            <div class="analytics1">0%<br>Crítico</div>
-                            <div class="analytics2">25%<br>Alerta</div>
-                            <div class="analytics3">50%<br>Ideal</div>
-                            <div class="analytics4">70%<br>Alerta</div>
-                            <div class="analytics5">100%<br>Crítico</div>
+                            <div class="analytics1"> < 14% <br>Crítico</div>
+                            <div class="analytics2">14% - 15%<br>Alerta</div>
+                            <div class="analytics3">16% - 18%<br>Ideal</div>
+                            <div class="analytics4">19% - 20%<br>Alerta</div>
+                            <div class="analytics5">> 20%<br>Crítico</div>
                         </div>
                         <div id="body3-1-header-right" class="body3-1-header-right-class">
                             <div id="tituloAquario"></div>
@@ -199,7 +200,7 @@
                     label: 'Umidade',
                     borderColor: '#45b3e7',
                     backgroundColor: '#89cff0',
-                    fill: true,
+                    fill: false,
                     data: []
                 },
                 {
@@ -207,7 +208,7 @@
                     label: 'Temperatura',
                     borderColor: '#ff3232',
                     backgroundColor: '#ff7f7f',
-                    fill: true,
+                    fill: false,
                     data: []
                 }
             ]
@@ -295,10 +296,30 @@
                     dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
                     dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
 
+                    novoRegistro[0].temperatura = Number(novoRegistro[0].temperatura) - 2
+
+                    if (novoRegistro[0].umidade >= 16 && novoRegistro[0].umidade <= 18) {
+                        calendario.innerHTML = '<span style="color: green;"> A umidade está ideal! <br>  Umidade atual: '+ novoRegistro[0].umidade + '%</span>'
+                        } else if (novoRegistro[0].umidade >= 14 && novoRegistro[0].umidade <= 20) {
+                        calendario.innerHTML = '<span style="color: orange;"> A umidade está em nível de alerta! <br> Umidade atual: '+ novoRegistro[0].umidade + '%</span>'
+                        } else{
+                        calendario.innerHTML = '<span style="color: red;"> A umidade está em nível crítico! <br> Umidade atual: '+ novoRegistro[0].umidade + '%</span>'
+                        }
+
+                    if (novoRegistro[0].temperatura >= 23 && novoRegistro[0].temperatura <= 26) {
+                        calendario.innerHTML += '<span style="color: green;"> A temperatura está ideal! <br> Temperatura atual: ' + novoRegistro[0].temperatura  + 'º</span>'
+                    } else if (novoRegistro[0].temperatura >= 20 && novoRegistro[0].temperatura <= 30) {
+                        calendario.innerHTML += '<span style="color: orange;"> A temperatura está em nível de alerta!<br> Temperatura atual: ' + novoRegistro[0].temperatura  + 'º</span>'
+                    } else {
+                        calendario.innerHTML += '<span style="color: red;"> A temperatura está em nível crítico!<br> Temperatura atual: ' + novoRegistro[0].temperatura  + 'º</span>'
+                    }
                     window.grafico_linha.update();
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
                     proximaAtualizacao = setTimeout(() => atualizarGrafico(idDado, dados), 2000);
+
+                    
+                    
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -310,5 +331,15 @@
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
 
+    }
+
+    function analytics() {
+        if (novoRegistro[0].umidade >= 40 && novoRegistro[0].umidade <= 60) {
+            
+        } else if (condition) {
+            
+        }{
+            
+        }
     }
 </script>
