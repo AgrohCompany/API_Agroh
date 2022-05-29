@@ -21,9 +21,9 @@ function validarSessao() {
 }
 
 function limparSessao() {
-    aguardar();
+    // aguardar();
     sessionStorage.clear();
-    finalizarAguardar();
+    // finalizarAguardar();
     window.location = "../login.html";
 }
 

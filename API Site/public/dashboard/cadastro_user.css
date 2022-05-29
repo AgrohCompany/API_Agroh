@@ -25,6 +25,10 @@
     width: 20%;
 }
 
+.input-all input:focus {
+    outline: 0;
+}
+
 .btn-login {
     border-radius: 7px;
     text-transform: uppercase;

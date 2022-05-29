@@ -191,6 +191,10 @@ body {
     padding: 5px;
 }
 
+.input-all input:focus {
+    outline: 0;
+}
+
 .icon {
     color: #56bd56;
 }
