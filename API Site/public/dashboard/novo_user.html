@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="dashboard_style.css">
 
-    <title>AgrohCompany | Novo Usuário</title>
+    <title>AgrohCompany | Dashboard</title>
 
     <!-- 
     já esse link é dos gráficos de linhas e barras que temos,
@@ -32,7 +32,7 @@
       <div id="header-left" class="header-left-class">
 
         <div class="caixa-user-class">
-            <h2>Olá, <span id="b_usuario">username</span></h2>
+            <h2>Olá, <span id="username">username</span></h2>
         </div>
 
         <div class="caixa2-postIt-class"> 
@@ -56,11 +56,10 @@
         <div id="nave-header-right" class="nave-header-right-class">
             <img src="Imagens/logo-agroh&nome.jpeg" alt="logo-agrohCompany">
             <ul>
-                <li><a href="dashboard_Agroh.html"><img src="Imagens/home.png" alt="Imagem-home"></a></li>
-                <li><a target="_blank" href="https://app.pipefy.com/public/form/nfSUmU93"><img src="Imagens/help-desk.png" alt="imagem-envelope"></a></li>
-                <!-- <li><a href="#"><img src="Imagens/envelope.png" alt="imagem-envelope"></a></li>
-                <li><a href="#"><img src="Imagens/notificacao.png" alt="imagem-notificação"></a></li> -->
-                <li onclick="limparSessao()"><a href="../login.html"><img src="Imagens/sair.png" alt="imagem-saida"></a></li>
+                <li><a href="#"><img src="Imagens/envelope.png" alt="imagem-envelope"></a></li>
+                <li><a href="#"><img src="Imagens/notificacao.png" alt="imagem-notificação"></a></li>
+                <li><a href="#"><img src="Imagens/avatar.png" alt="imagem-avatar"></a></li>
+                <li><a href="#"><img src="Imagens/sair.png" alt="imagem-saida"></a></li>
             </ul>
         </div>
         <!-- fim da nave, tudo que faz parte dela, no css estão com as bordas em greenyellow -->
@@ -156,8 +155,6 @@
 <script>
   function cadastrar() {
       aguardar();
-
-      b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
       //Recupere o valor da nova input pelo nome do id
       // Agora vá para o método fetch logo abaixo

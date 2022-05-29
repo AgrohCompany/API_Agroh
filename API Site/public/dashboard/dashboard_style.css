@@ -170,7 +170,6 @@ body {
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    flex-direction: column;
 }
 
 .body4-temperatura-umidade-class {

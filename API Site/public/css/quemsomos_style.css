@@ -59,18 +59,19 @@ body {
     border: 2px solid #fff;
     cursor: pointer;
 }
-.now {
+
+/* .now {
     font-weight: bold;
 }
 .now:hover {
     border-bottom: 2px solid #ffffff;
-}
+} */
 
 /* SOBRE NÓS */
 .banner-qs {
     background-image: url(../Imagens/plant_soja2.jpeg);
     background-repeat: no-repeat;
-    height: 80vh;
+    height: 100vh;
     width: 100%;
     display: flex;
     align-items: center;
@@ -82,7 +83,7 @@ body {
 
 .opacidade-qs {
     background-color: rgba(0, 0, 0, 0.70);
-    height: 80vh;
+    height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -96,13 +97,18 @@ body {
     text-align: justify;
     background-color: rgba(224, 224, 224, 0.70);
     width: 60vw;
-    height: 50vh;
+    height: auto;
     padding: 10px 30px;
+    font-size: 1.2em;
     font-weight: 500;
     border-radius: 7px;
     box-shadow: 0 0 50px  #000000 ;
 }
 
+.sobre-nos h2 {
+    display: flex;
+    justify-content: center;
+} 
 /* DÚVIDAS */
 
 
@@ -110,9 +116,9 @@ body {
     background-color: #56bd56;
     align-items: center;
     height: auto;
-    width: 30vw;
+    width: 60vw;
     border-radius: 7px;
-    margin-top: 5vh;
+    margin-top: 10vh;
     text-align: center;
     padding-top: 3vh;
     padding-bottom: 3vh;
@@ -178,7 +184,7 @@ body {
     bottom: 0;
     background-color: #0C120C;
     color: #ffffff;
-    height: 30vh;
+    height: 32vh;
     border-top: 1px solid #ffffff;
     padding: 3vh;
 }
@@ -189,10 +195,9 @@ body {
     align-items: center;
 }
 
-
 .contato p {
     font-size: 1.0em;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 #footer img {
@@ -205,31 +210,63 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
-    margin-top: 20vh;
+    /* font-weight: bold; */
+    margin-top: 21.2vh;
 }
 
 .container-sociais {
+    display: flex;
+    justify-content: space-evenly;
     background-color: #ffffff;
     border-radius: 5px;
-    width: 8.4vw;
+    width: 8.5vw;
     padding: 2px;
     margin-top: 5px;
     margin-bottom: 30px;
 }
 
-.btn-footer {
-    background-color: #ecf0f1;
-    border: none;
-    width: 8vw;
-    height: 4vh;
-    font-weight: bold;
+.container-helpDesk {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
     border-radius: 5px;
+    width: 3vw;
+    padding: 2px;
+    margin-top: 5px;
+}
+
+.redes-helpDesk ul {
+    margin-top: 27.5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+
+#botao_voltar_topo {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-footer {
+    background-color: #d1d1d1;
+    color: #666667;
+    border: 1px solid #666667;
+    width: 5.1vw;
+    height: 11vh;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 39px;
     cursor: pointer;
 }
 
 .btn-footer:hover {
+    color: #fff;
+    font-size: 25px;
     background-color: #56bd56;
-    border: 2px solid #ffffff;
+    border: 1px solid #ffffff;
     transition: 0.5s;
 }

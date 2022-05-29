@@ -1,5 +1,5 @@
 body {
-    margin: 0;
+    margin: 0; 
     padding: 0;
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
@@ -191,10 +191,6 @@ body {
     padding: 5px;
 }
 
-.input-all input:focus {
-    outline: 0;
-}
-
 .icon {
     color: #56bd56;
 }
@@ -244,8 +240,4 @@ body {
 
   .banner #div_erros_login {
     margin-top: 15px;
-  }
-
-  .text-copy {
-      margin-top: 50vh;
   }

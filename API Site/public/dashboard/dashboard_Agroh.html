@@ -19,8 +19,6 @@
 
     <link rel="stylesheet" href="dashboard_style.css">
 
-    <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
-    
     <script src="../js/funcoes.js"></script>
 </head>
 <body onload="validarSessao()">
@@ -31,7 +29,7 @@
       <div id="header-left" class="header-left-class">
 
         <div class="caixa-user-class">
-            <h2>Olá, <span id="b_usuario">username</span></h2>
+            <h2>Olá, <span id="username">username</span></h2>
         </div>
 
         <div class="caixa2-postIt-class"> 
@@ -55,21 +53,20 @@
         <div id="nave-header-right" class="nave-header-right-class">
             <img src="Imagens/logo-agroh&nome.jpeg" alt="logo-agrohCompany">
             <ul>
-                <li><a href="#"><img src="Imagens/home.png" alt="Imagem-home"></a></li>
-                <li><a target="_blank" href="https://app.pipefy.com/public/form/nfSUmU93"><img src="Imagens/help-desk.png" alt="imagem-envelope"></a></li>
-                <!-- <li><a href="#"><img src="Imagens/envelope.png" alt="imagem-envelope"></a></li>
-                <li><a href="#"><img src="Imagens/notificacao.png" alt="imagem-notificação"></a></li> -->
-                <li><a href="novo_user.html"><img src="Imagens/add_user.png" alt="imagem-avatar"></a></li>
-                <li onclick="limparSessao()"><a href="../login.html"><img src="Imagens/sair.png" alt="imagem-saida"></a></li>
+                <li><a href="#"><img src="Imagens/help-desk.png" alt="imagem-suporte"></a></li>
+                <li><a href="#"><img src="Imagens/envelope.png" alt="imagem-envelope"></a></li>
+                <li><a href="#"><img src="Imagens/notificacao.png" alt="imagem-notificação"></a></li>
+                <li><a href="#"><img src="Imagens/add_user.png" alt="imagem-adicionar-usuario"></a></li>
+                <li><a href="#"><img src="Imagens/sair.png" alt="imagem-saida"></a></li>
             </ul>
         </div>
         <!-- fim da nave, tudo que faz parte dela, no css estão com as bordas em greenyellow -->
 
         <!-- inicio dos botões -->
         <div id="tabs" class="tabs-class">
-            <button onclick="obterDadosGrafico(1)">Dashboard</button>
-            <button onclick="obterDadosGrafico(2)">Gráfico 1</button>
-            <button onclick="obterDadosGrafico(3)">Gráfico 2</button>
+            <button onclick="buttonDashboard()">Dashboard</button>
+            <button onclick="buttonGrafico1()">Gráfico 1</button>
+            <button onclick="buttonGrafico2()">Gráfico 2</button>
         </div>
         <!-- fim dos botões, tudo que faz parte deles, no css estão com as bordas pink -->
 
@@ -80,15 +77,52 @@
             inicio do body dois, ele é responsável em guardar as duas divs onde estão os gráficos,
             no css sua bordar é goldenrod
           -->
-          <div id="body2-header-right" class="body2-header-right-class">
+          <div id="body2-header-right" class="body2-header-right-class"> 
 
           <div id="noneEblockDash" style="display: block;"> <!-- none e block em teste-->
 
-            <div id="body3-1-header-right" class="body3-1-header-right-class">
-                <div id="tituloAquario"></div>
-                <div class="tamanhoGraficosLineBar-class">
-                    <canvas id="canvas_grafico"></canvas>
+            <div id="body3-header-right" class="body3-header-right-class">
+
+                <div class="body5-chartsPolares-class">
+
+                    <div class="body5-1-chartsPolares-class">
+                        <br>
+                        Temperatura dos hectares
+                        <canvas id="dht11Umidade" class="tamanhoGraficosPolares-class"></canvas>
+                    </div>
+
                 </div>
+
+                <!-- aqui é a parte do centro dos dois gráficos polares, onde tem a temp e umi atual -->
+                <div class="body4-temperatura-umidade-class">
+                    <p>Temperatura atual</p>
+                    <div style="height: 10vh; width: 10vh; background-color: orange; display:flex; justify-content: center; align-items: center;">0 °c</div>
+                    <p>Umidade atual</p>
+                    <div style="height: 10vh; width: 10vh; background-color: darkcyan; display:flex; justify-content: center; align-items: center;">0 %</div>
+                </div>
+
+                <div class="body5-chartsPolares-class">
+
+                    <div class="body5-1-chartsPolares-class">
+                        <br>
+                        Umidade dos hectares
+                        <canvas id="dht11Temperatura" class="tamanhoGraficosPolares-class"></canvas>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="body3-1-header-right" class="body3-1-header-right-class">
+
+                <div>
+                    <canvas id="canvasChartLine" class="tamanhoGraficosLineBar-class"></canvas>
+                </div>
+
+                <div>
+                    <canvas id="canvasChartBar"  class="tamanhoGraficosLineBar-class"></canvas>
+                </div>
+
             </div>
 
           </div>
@@ -121,176 +155,120 @@
 </html>
 
 <script>
+  /* -- dht11Umidade -- */
+  var contextoDht11Umidade = document.getElementById('dht11Umidade').getContext('2d');
+  contextoDht11Umidade.canvas.width = 1000;
+  contextoDht11Umidade.canvas.height = 300;
+  var dht11Umidade = new Chart(
+      contextoDht11Umidade,
+      {
+          type: 'line',
+          data: {
+              datasets: [{
+                  label: 'Umidade',
+                  type: 'line',
+                  borderColor: ['#45b3e7'],
+                  backgroundColor: ['#89cff0']
+              }]
+          },
+          options: {
+              scales: {
+                  xAxes: [{
+                      distribution: 'series',
+                      ticks: {
+                          beginAtZero: true
+                      }
+                  }],
+                  yAxes: [{
+                      scaleLabel: {
+                          display: true,
+                          labelString: 'Umidade'
+                      },
+                      ticks: {
+                          beginAtZero: true
+                      }
+                  }]
+              },
+              animation: {
+                  duration: 0
+              }
+          }
+      }
+  );
+  /* -- dht11Temperatura -- */
+  var contextoDht11Temperatura = document.getElementById('dht11Temperatura').getContext('2d');
+  contextoDht11Temperatura.canvas.width = 1000;
+  contextoDht11Temperatura.canvas.height = 300;
+  var dht11Temperatura = new Chart(
+      contextoDht11Temperatura,
+      {
+          type: 'line',
+          data: {
+              datasets: [{
+                  label: "Temperatura",
+                  type: 'line',
+                  borderColor: ['#ff3232'],
+                  backgroundColor: ['#ff7f7f']
+              }]
+          },
+          options: {
+              scales: {
+                  xAxes: [{
+                      distribution: 'series',
+                      ticks: {
+                          beginAtZero: true
+                      }
+                  }],
+                  yAxes: [{
+                      scaleLabel: {
+                          display: true,
+                          labelString: 'Temperatura'
+                      },
+                      ticks: {
+                          beginAtZero: true
+                      }
+                  }]
+              },
+              animation: {
+                  duration: 0
+              }
+          }
+      }
+  );
 
-    let proximaAtualizacao;
+  var paginacao = {};
+  var tempo = {};
+  function obterDados(grafico, endpoint) {
+      var http = new XMLHttpRequest();
+      http.open('GET', 'http://localhost:3000/sensores/' + endpoint, false);
+      http.send(null);
+      var valores = JSON.parse(http.responseText);
+      if (paginacao[endpoint] == null) {
+          paginacao[endpoint] = 0;
+      }
+      if (tempo[endpoint] == null) {
+          tempo[endpoint] = 0;
+      }
+      // Exibir à partir do último elemento exibido anteriormente
+      var ultimaPaginacao = paginacao[endpoint];
+      paginacao[endpoint] = valores.length;
+      var valores = valores.slice(ultimaPaginacao);
+      valores.forEach((valor) => {
+          //Máximo de 60 itens exibidos no gráfico
+          if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+              grafico.data.labels.shift();
+              grafico.data.datasets[0].data.shift();
+          }
 
-    window.onload = obterDadosGrafico(1);
+          grafico.data.labels.push(tempo[endpoint]++);
+          grafico.data.datasets[0].data.push(parseFloat(valor));
+          grafico.update();
+      })
+  }
 
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  setInterval(() => {
+      obterDados(dht11Umidade, 'dht11/umidade');
+      obterDados(dht11Temperatura, 'dht11/temperatura');
+  }, 1000);
 
-    // verificar_autenticacao();
-
-    function alterarTitulo(idDado) {
-        var tituloAquario = document.getElementById("tituloAquario")
-        tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #0f2e00'>Plantação " + idDado + "</span>"
-    }
-
-    // O gráfico é construído com três funções:
-    // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
-    // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
-    // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
-
-    // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
-    // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
-    // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
-
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
-    function obterDadosGrafico(idDado) {
-        alterarTitulo(idDado)
-
-        if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
-        }
-
-        fetch(`/medidas/ultimas/${idDado}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
-
-                    plotarGrafico(resposta, idDado);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
-
-    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
-    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, idDado) {
-        console.log('iniciando plotagem do gráfico...');
-
-        var dados = {
-            labels: [],
-            datasets: [
-                {
-                    yAxisID: 'y-umidade',
-                    label: 'Umidade',       
-                    borderColor: '#45b3e7',
-                    backgroundColor: '#89cff0',
-                    fill: true,
-                    data: []
-                },
-                {
-                    yAxisID: 'y-temperatura',
-                    label: 'Temperatura',
-                    borderColor: '#ff3232',
-                    backgroundColor: '#ff7f7f',
-                    fill: true,
-                    data: []
-                }
-            ]
-        };
-
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            dados.labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.umidade);
-            dados.datasets[1].data.push(registro.temperatura);
-        }
-
-        console.log(JSON.stringify(dados));
-
-        var ctx = canvas_grafico.getContext('2d');
-        window.grafico_linha = Chart.Line(ctx, {
-            data: dados,
-            options: {
-                responsive: true,
-                animation: { duration: 500 },
-                hoverMode: 'index',
-                stacked: false,
-                title: {
-                    display: false,
-                    text: 'Dados capturados'
-                },
-                scales: {
-                    yAxes: [{
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                        id: 'y-temperatura',
-                        ticks: {
-                            beginAtZero: true,
-                            max: 100,
-                            min: 0
-                        }
-                    }, {
-                        type: 'linear',
-                        display: false,
-                        position: 'right',
-                        id: 'y-umidade',
-                        ticks: {
-                            beginAtZero: true,
-                            max: 100,
-                            min: 0
-                        },
-
-                        gridLines: {
-                            drawOnChartArea: false,
-                        },
-                    }],
-                }
-            }
-        });
-
-        setTimeout(() => atualizarGrafico(idDado, dados), 2000);
-    }
-
-
-    // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-    // buscando a última medida inserida em tabela contendo as capturas, 
-
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGrafico(idDado, dados) {
-
-        fetch(`/medidas/tempo-real/${idDado}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
-
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico: ${dados}`);
-
-                    // tirando e colocando valores no gráfico
-                    dados.labels.shift(); // apagar o primeiro
-                    dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
-                    
-                    dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                    dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
-                    
-                    dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                    dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-                    window.grafico_linha.update();
-
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idDado, dados), 2000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idDado, dados), 2000);
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-
-    }
 </script>
