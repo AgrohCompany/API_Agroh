@@ -4,6 +4,7 @@ function validarSessao() {
 
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
+    var username = document.getElementById("b_usuario")
 
     var h1LoginUsuario = document.getElementById("h1_login_usuario");
 
@@ -12,7 +13,7 @@ function validarSessao() {
         if (h1LoginUsuario != undefined) {
             h1LoginUsuario.innerHTML = email;
         }
-        b_usuario.innerHTML = nome;
+        username.innerHTML = nome;
 
         finalizarAguardar();
     } else {

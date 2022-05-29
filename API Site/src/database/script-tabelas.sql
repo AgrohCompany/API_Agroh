@@ -7,18 +7,6 @@ create database agrohcompany;
 
 use agrohcompany;
 
-create table Cliente(
-idCliente int primary key auto_increment,
-nome varchar(100),
-email varchar(100),
-senha varchar(45),
-cpf_cnpj varchar(45),
-endereco varchar(100),
-cep varchar(12),
-complemento varchar(100),
-estado char(2)
-);
-
 create table tipo_usuario (
 idTipo int primary key auto_increment,
 tipoUsuario varchar(45)
