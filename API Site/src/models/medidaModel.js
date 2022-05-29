@@ -4,7 +4,7 @@ function buscarUltimasMedidas(idDado, limite_linhas) {
     instrucaoSql = `select 
                         temperatura, 
                         umidade,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
+                        FORMAT(momento,'hh:mm:ss') as momento_grafico
                     from dados_sensor
                     where fkSensor = ${idDado}
                     order by idDado desc limit ${limite_linhas}`;
@@ -16,7 +16,7 @@ function buscarMedidasEmTempoReal(idDado) {
     instrucaoSql = `select 
                         temperatura, 
                         umidade, 
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
+                        FORMAT(momento,'hh:mm:ss') as momento_grafico, 
                         fkSensor 
                         from dados_sensor where fkSensor = ${idDado} 
                     order by idDado desc limit 1`;

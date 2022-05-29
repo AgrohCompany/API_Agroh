@@ -326,3 +326,31 @@ body {
     justify-content: space-around;
     margin-bottom: 20px;
 }
+
+.analytics_umid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 6vh;
+    width: 15vh;
+    border-radius: 5px;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #fdf8b6;
+    background-color: blue;
+}
+
+.analytics_temp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 6vh;
+    width: 15vh;
+    border-radius: 5px;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #fdf8b6;
+    background-color: blue;
+}
