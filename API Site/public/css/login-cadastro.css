@@ -1,5 +1,5 @@
 body {
-    margin: 0;
+    margin: 0; 
     padding: 0;
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
@@ -191,10 +191,6 @@ body {
     padding: 5px;
 }
 
-.input-all input{
-    outline: 0;
-}
-
 .icon {
     color: #56bd56;
 }
@@ -230,11 +226,10 @@ body {
     color: black;
     width: 230px;
     position: fixed;
-    top: 10%;
-    left: 50%;
     border-radius: 7px;
     border: #56bd56 2px solid;
     padding: 5px;
+    margin-right: -25%;
     box-shadow: 0 1px 5px #666667;
   }
   

@@ -24,7 +24,6 @@
 
     <script src="../js/funcoes.js"></script>
 </head>
-
 <body onload="validarSessao()">
   <!-- essa tag div global é toda a nossa naveção da página, ela foi difivida em partes -->
   <div id="global" class="global-class">
@@ -33,7 +32,7 @@
       <div id="header-left" class="header-left-class">
 
         <div class="caixa-user-class">
-            <h2>Olá, <span id="b_usuario">username</span></h2>
+            <h2>Olá, <span id="username">username</span></h2>
         </div>
 
         <div class="caixa2-postIt-class"> 
@@ -57,12 +56,11 @@
         <div id="nave-header-right" class="nave-header-right-class">
             <img src="Imagens/logo-agroh&nome.jpeg" alt="logo-agrohCompany">
             <ul>
-                <!-- <li><a href="#"><img src="Imagens/envelope.png" alt="imagem-envelope"></a></li>
-                        <li><a href="#"><img src="Imagens/notificacao.png" alt="imagem-notificação"></a></li> -->
-                        <li><a href="dashboard_Agroh.html"><img src="Imagens/home.png" alt=""></a></li>
-                        <li><a href="https://app.pipefy.com/public/form/nfSUmU93" target="_blank"><img src="Imagens/help-desk.png" alt="imagem-avatar"></a></li>
-                        <li><a href="novo_user.html"><img src="Imagens/add_user.png" alt=""></a></li>
-                    <li><img src="Imagens/sair.png" alt="imagem-saida" onclick="limparSessao()" style="cursor: pointer;"></li>
+                <li><a href="../dashboard/dashboard_Agroh.html"><img src="../Imagens/grafico.png" alt="imagem-envelope"></a></li>
+                <li><a href="#"><img src="Imagens/envelope.png" alt="imagem-envelope"></a></li>
+                <li><a href="#"><img src="Imagens/notificacao.png" alt="imagem-notificação"></a></li>
+                <li><a href="#"><img src="Imagens/help-desk.png" alt="imagem-avatar"></a></li>
+                <li><a href="#"><img src="Imagens/sair.png" alt="imagem-saida"></a></li>
             </ul>
         </div>
         <!-- fim da nave, tudo que faz parte dela, no css estão com as bordas em greenyellow -->
@@ -113,20 +111,16 @@
                         <input class="ipt" type="password" name="senha" id="confirmacao_senha_input" placeholder="Confirme sua senha">
                     </div>
 
-                    <!-- TIPO -->
+                    
                       <div class="cb_box">
                           <i class="uil uil-head-side icon"></i>
-                          <select name="" id="tipo_select">
-                          <option value="0" style="color: #808080;">-Tipo de Usuário-</option>
+                          <select name="" id="ipt_user">
+                          <option value="0" style="color: grey;">-Tipo de Usuário-</option>
                           <option value="1">Administrador</option>
                           <option value="2">Analista</option>
                         </select>
                       </div>
-                      <div id="div_aguardar">
-                        <div id="cardErro">
-                          <div id="mensagem_erro"></div>
-                        </div>
-                      </div>
+    
                     <!-- <div class="alerta_erro">
                         <div class="card_erro" id="cardErro">
                             <span id="mensagem_erro"></span>
@@ -161,7 +155,7 @@
 
 <script>
   function cadastrar() {
-    //   aguardar();
+      aguardar();
 
       //Recupere o valor da nova input pelo nome do id
       // Agora vá para o método fetch logo abaixo
@@ -170,12 +164,9 @@
       var senhaVar = senha_input.value;
       var confirmacaoSenhaVar = confirmacao_senha_input.value;
       var cpfVar = cpf_input.value;
-      var telefoneVar = telefone_input.value
-      var idEmpresaVar = sessionStorage.FK_EMPRESA;
-      var tipoVar = Number(tipo_select.value);
-      var admVar = sessionStorage.ID_USUARIO;
+      var telefoneVar = telefone_input.value;
 
-      if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || cpfVar == "" || telefoneVar == "" || tipoVar == 0) {
+      if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || cpfVar == "" || telefoneVar == "") {
           cardErro.style.display = "block"
           mensagem_erro.innerHTML = "Preencha todos os campos para prosseguir!";
 
@@ -183,27 +174,27 @@
           return false;
       }
       else {
-        //   setInterval(sumirMensagem, 5000)
+          setInterval(sumirMensagem, 5000)
       }
 
       if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
           cardErro.style.display = "block"
           mensagem_erro.innerHTML = "Ops, e-mail inválido! Verifique e tente novamente.";
-        //   finalizarAguardar();
+          finalizarAguardar();
           return false;
       }
       else {
-        //   setInterval(sumirMensagem, 5000)
+          setInterval(sumirMensagem, 5000)
       }
 
       if (senhaVar != confirmacaoSenhaVar) {
           cardErro.style.display = "block"
           mensagem_erro.innerHTML = "As senhas inseridas devem ser iguais para prosseguir!";
-        //   finalizarAguardar();
+          finalizarAguardar();
           return false;
       }
       else {
-        //   setInterval(sumirMensagem, 5000)
+          setInterval(sumirMensagem, 5000)
       }
 
       // Enviando o valor da nova input
@@ -220,9 +211,6 @@
               senhaServer: senhaVar,
               cpfServer:  cpfVar,
               telefoneServer: telefoneVar,
-              idEmpresaServer: idEmpresaVar,
-              tipoServer: tipoVar,
-              admServer: admVar,
           })
       }).then(function (resposta) {
 
@@ -231,15 +219,15 @@
           if (resposta.ok) {
               cardErro.style.display = "block"
               mensagem_erro.innerHTML = "Cadastro realizado com sucesso!";
-              window.location = "novo_user.html";
-              // limparFormulario();
-            //   finalizarAguardar();
+              window.location = "../login.html";
+              limparFormulario();
+              finalizarAguardar();
           } else {
               throw ("Houve um erro ao tentar realizar o cadastro!");
           }
       }).catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}. Favor tentar novamente.`);
-        //   finalizarAguardar();
+          console.log(`#ERRO: ${resposta}`);
+          finalizarAguardar();
       });
 
       return false;

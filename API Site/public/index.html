@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="pt">
 
 <head>
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/quemsomos_style.css">
 
     <link rel="shortcut icon" href="Imagens/logo-agroh.png" type="image/x-icon">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
@@ -33,7 +33,7 @@
             </ul>
         </div>
     </div>
-    
+
     <div class="img-fundo">
         <div class="opacidade">
             <div class="texto">
@@ -50,7 +50,7 @@
     <div id="simulador">
         <div class="card">
             <p>
-                Com a MoveTech você terá as vantagens de ter sua cana e sua soja
+                Com a Agroh Company você terá as vantagens de ter sua cana e sua soja
                 monitorada constantemente, aqui nós presamos pela qualidade e
                 desenvolvimento de seus produtos garantindo sempre o melhor.
             </p>
@@ -64,7 +64,7 @@
             <span class="card_Subtitulos">Sensores</span>
             <div class="input-all">
                 <input id="sensor_input" type="number" placeholder="Hectares em sua plantação" />
-            </div>    
+            </div>
             <span class="card_Subtitulos">Lucro Atual</span>
             <div class="input-all">
                 <input id="dinheiro" type="number" placeholder="Lucro sem a Agroh Company" />
@@ -106,39 +106,38 @@
         </div>
     </div>
     <div id="botao_voltar_topo">
+        <div class="container-helpDesk">
+            <a href="https://app.pipefy.com/public/form/nfSUmU93"><img src="Imagens/suporte-online.png"
+                    alt="suporte"></a>
+        </div>
         <a href="#"><button class="btn-footer">↑</button></a>
     </div>
-    
-    
+
+
     <footer id="footer">
         <div class="footer-container">
             <div class="footer-detalhes">
                 <div class="contato">
-                    <p>Telefone: <br> +55 (11) 4002-8922<br><br>E-mail: <br> agrohcompany.contato@gmail.com<br></p>
-                    <span class="txt-footer">Endereço: Rua Haddock Lobo N° 595 <br> São paulo - SP | CEP: 01414-001</span>
+                    <p>Central de contato <br> (11)4002-8922 | agrohcompany.contato@gmail.com<br></p>
+                    <span class="txt-footer">Endereço: Rua Haddock Lobo N° 595 <br> São paulo - SP | CEP:
+                        01414-001</span>
                 </div>
             </div>
-            <div class="logotipo-footer">
-                <img src="Imagens/logo-agroh.png" alt="">
-                <span>Copyright © 2022 Agroh Company LTDA</span>
-            </div>
-            <div class="redes-helpDesk">
-                <ul>
-                    <span class="txt-footer">Nos acompanhe também:</span>
-                    <div class="container-sociais">
-                        <a href="https://api.whatsapp.com/send?phone=5511966716409&text=Ol%C3%A1%2C%20gostaria%20de%20tirar%20uma%20d%C3%BAvida"
+
+            <ul>
+                <div class="container-sociais">
+                    <a href="https://api.whatsapp.com/send?phone=5511966716409&text=Ol%C3%A1%2C%20gostaria%20de%20tirar%20uma%20d%C3%BAvida"
                         target="_blank"><img src="Imagens/whatsapp.png"></a>
-                        <a href="https://www.instagram.com/agrohcompany/" target="_blank"><img src="Imagens/instagram.png"></a>
-                        <a href="https://www.facebook.com/Agroh-Company-111308478226300" target="_blank"><img src="Imagens/facebook.png"></a>
-                    </div>
-                    <span>Está com problema? clique aqui!</span>
-                    <div class="container-helpDesk">
-                        <a href="https://app.pipefy.com/public/form/nfSUmU93"><img src="Imagens/customer-support.png" alt=""></a>
-                    </div>
-                </ul>
-            </div>
-                <!-- <div class="suport">
-            </div> -->
+                    <a href="https://www.instagram.com/agrohcompany/" target="_blank"><img
+                            src="Imagens/instagram.png"></a>
+                    <a href="https://www.facebook.com/Agroh-Company-111308478226300" target="_blank"><img
+                            src="Imagens/facebook.png"></a>
+                </div>
+            </ul>
+        </div>
+        <div class="logotipo-footer">
+            <img src="Imagens/logo-agroh.png" alt="">
+            <span>Copyright © 2022 Agroh Company LTDA</span>
         </div>
     </footer>
 </body>
@@ -146,6 +145,7 @@
 
 </html>
 <script>
+
     function mostrar() {
         var sensor = Number(sensor_input.value);
         var instalacao = 70 * sensor + 2500;
@@ -155,26 +155,26 @@
         var amais = Number(dinheiro.value) * 0.3;
         var mensalidade = 1400 + (sensor * 10);
 
-        if (sensor_input.value == ""  || manutencao.value == "" || dinheiro.value == "") {
-            alert (`Preencha todos os campos para simular`);
+        if (sensor_input.value == "" || manutencao.value == "" || dinheiro.value == "") {
+            alert(`Preencha todos os campos para simular`);
         } else if (sensor_input.value <= 0) {
-            alert (`Preencha o campo "Sensores" com um número maior que 0.`);
+            alert(`Preencha o campo "Sensores" com um número maior que 0.`);
         } else if (manutencao.value <= 0) {
-            alert (`Preencha o campo "Lucro Atual" com um número maior que 0.`);
+            alert(`Preencha o campo "Lucro Atual" com um número maior que 0.`);
         } else if (dinheiro.value <= 0) {
-            alert (`Preencha o campo "Manutenção" com um número maior que 0.`);
+            alert(`Preencha o campo "Manutenção" com um número maior que 0.`);
         } else {
             valores.innerHTML = `Sua mensalidade será de R$${mensalidade.toFixed(
-            2
-        )}. Por sua vez a instalação ficará em torno de R$${instalacao.toFixed(
-            2
-        )}, pois quanto mais sensores forem adquiridos, maior será o preço da instalação, bem como seus ganhos mensais. Além disso, seu custo de manutenção cairá para, aproximadamente, R$${manu.toFixed(
-            2
-        )}, economizando em torno de R$${amenos.toFixed(2)}. Seu lucro previsto será de R$${lucro.toFixed(2)}, R$${amais.toFixed(
-            2
-        )} a mais do que ganharia sem os sensores`;
+                2
+            )}. Por sua vez a instalação ficará em torno de R$${instalacao.toFixed(
+                2
+            )}, pois quanto mais sensores forem adquiridos, maior será o preço da instalação, bem como seus ganhos mensais. Além disso, seu custo de manutenção cairá para, aproximadamente, R$${manu.toFixed(
+                2
+            )}, economizando em torno de R$${amenos.toFixed(2)}. Seu lucro previsto será de R$${lucro.toFixed(2)}, R$${amais.toFixed(
+                2
+            )} a mais do que ganharia sem os sensores`;
         }
 
-        
+
     }
 </script>
