@@ -33,7 +33,7 @@
         <div id="header-left" class="header-left-class">
             
             <div class="caixa-user-class">
-                <h2>Olá, <span id="b_usuario"></span></h2>
+                <h2>Olá, <span id="b_usuario">username</span></h2>
             </div>
 
             <div class="caixa2-postIt-class">
@@ -143,6 +143,8 @@
     let proximaAtualizacao;
 
     window.onload = obterDadosGrafico(1);
+
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     // verificar_autenticacao();
 
