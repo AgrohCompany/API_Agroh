@@ -116,13 +116,13 @@ body {
     background-color: #56bd56;
     align-items: center;
     height: auto;
-    width: 60vw;
+    width: 70vw;
     border-radius: 7px;
-    margin-top: 10vh;
+    margin-top: 5vh;
     text-align: center;
-    padding-top: 3vh;
     padding-bottom: 3vh;
     box-shadow: 0 5px 15px #000000;
+    margin-bottom: -110px;
 }
 .container-inp {
     display: flex;
